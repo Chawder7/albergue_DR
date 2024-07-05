@@ -9,7 +9,7 @@ class Medicamentos(models.Model):
     cantidad = models.IntegerField(verbose_name = "Cantidad", null = True)
     fechaVen = models.DateField(verbose_name = "Fecha de vencimiento", null = True)
     descripcion = models.TextField(verbose_name = "Descripción del medicamento", null = True)
-    fotoMed = models.ImageField(upload_to = "fotosMedicamentos", null = True, verbose_name = "Foto del medicamento")
+    fotoMed = models.FileField(upload_to = "fotosMedicamentos", blank = True, null = True, verbose_name = "Foto del medicamento")
     created = models.DateTimeField(auto_now_add=True) 
     updated = models.DateTimeField(auto_now_add=True)
 

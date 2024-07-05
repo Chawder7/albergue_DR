@@ -8,7 +8,7 @@
 <body>
     <div class="form-container">
         <h2>Agregar medicamento</h2>
-        <form action="{%url 'RegistrarMed'%}" method="POST" role="form">
+        <form action="{%url 'RegistrarMed'%}" method="POST" role="form" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-group">
                 <div class="input-column">
@@ -32,11 +32,11 @@
             </div>
             <div class="form-group">
                 <label>Descripción</label>
-                <textarea type = "text" name="descripcion" rows="4"></textarea>
+                <textarea name="descripcion" rows="4"></textarea>
             </div>
             <div class="form-group">
                 <label>Imagen</label>
-                <input type="file" name="fotoMed">
+                <input type="file" name="fotoMed" />
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value = "Enviar">
