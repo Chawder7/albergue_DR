@@ -5,7 +5,7 @@ from django.contrib import messages
 
 # Create your views here.
 def altaMedicamento(request):
-    return render(request, "farmacia/farmacia.html")
+    return render(request, "farmacia/formFarmacia.html")
 
 def registrarMedicamento(request):
     if request.method == 'POST':
@@ -19,8 +19,17 @@ def registrarMedicamento(request):
             fotoMed = request.FILES['fotoMed']
             insert = Medicamentos(nombreMed = nombreMed, categoria = categoria, cantidad = cantidad, fechaVen = fechaVen, descripcion = descripcion, fotoMed = fotoMed)
             insert.save()
-            return render(request, "farmacia/farmacia.html")
+            return render(request, "farmacia/formFarmacia.html")
         else:
             messages.error(request, "Error al procesar el formulario")
     else: 
-        return render(request, "farmacia/farmacia.html", {'medicamento': Medicamentos})
+        return render(request, "farmacia/formFarmacia.html", {'medicamento': Medicamentos})
+
+def allMedicamentos(request):
+    medicamentos = Medicamentos.objects.all().only("id","nombreMed","descripcion","categoria","cantidad","fechaVen")
+    lowMeds = Medicamentos.objects.filter(cantidad__lte=20)
+    consutla ={
+        "medicamentos":medicamentos,
+        "lowMeds":lowMeds
+    }
+    return render(request, "farmacia/viewFarmacia.html",consutla)
