@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Medicamento</title>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Agregar medicamento</h2>
+        <form action="{%url 'RegistrarMed'%}" method="POST" role="form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <div class="input-column">
+                    <label>Nombre medicamento</label>
+                    <input type="text" name="nombreMed" required>
+                </div>
+                <div class="input-column">
+                    <label>Categoría</label>
+                    <input type="text" name="categoria" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-column">
+                    <label>Cantidad</label>
+                    <input type="number" name="cantidad" min="1" step="1" required>
+                </div>
+                <div class="input-column">
+                    <label>Fecha de Vencimiento</label>
+                    <input type="date" name="fechaVen" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Descripción</label>
+                <textarea name="descripcion" rows="4"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Imagen</label>
+                <input type="file" name="fotoMed" />
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value = "Enviar">
+                <button type="button" class="btn btn-secondary">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
