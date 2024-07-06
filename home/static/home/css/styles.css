@@ -91,6 +91,18 @@
   }
 }
 
+/* delete */
+.map {
+  flex-grow: 1;
+  height: 500px; /* Ajusta esta altura según tus necesidades */
+ }
+.map iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+ }
+/* delete */
+
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);
