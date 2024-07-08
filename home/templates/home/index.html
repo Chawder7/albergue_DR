@@ -1,0 +1,226 @@
+{% extends 'home/base.html' %}
+
+{% block contenido %}
+<!--Contenido-->
+        {% load static %}
+        <!-- Carrousel-->
+        <header>
+            <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active position-relative" data-bs-interval="10000">
+                  <img src="{% static 'home/images/alv_1.jpeg' %}" class="d-block w-100" height="500" alt="...">
+                    <div class="carousel-caption d-none d-md-block position-absolute bottom-50 end-50">
+                        <h2 class="text-white">Albergue divino Redentor</h2>
+                        <h3 class="text-white text-opacity-80">Estamos ahi para ti!</h3>
+                    </div>
+                </div>
+                <div class="carousel-item position-relative" data-bs-interval="2000">
+                  <img src="{% static 'home/images/alv_4.jpg' %}" class="d-block w-100" height="500" alt="...">
+                    <div class="carousel-caption d-none d-md-block position-absolute bottom-50 end-50">
+                        <h2>Desde hace 5 años!</h2>
+                    </div>               
+                </div>
+                <div class="carousel-item position-relative">
+                  <img src="{% static 'home/images/alv_3.jpg' %}" class="d-block w-100" height="500" alt="...">
+                    <div class="carousel-caption d-none d-md-block position-absolute bottom-50 end-50">
+                        <h2>Cuidando a quien lo necesita!</h2>
+                    </div>
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+        </header>
+        <div class="py-5 d-flex justify-content-center">
+            <h2><strong>Caracteristicas</strong></h2>
+        </div>
+        <!--Carrousel-->
+        <!-- Page Content-->
+        <section class="py-5 pt-4 position-relative">
+            <div class="container px-lg-5">
+                <!-- Page Features-->
+                <div class="row gx-lg-5">
+                    <div class="col-lg-6 col-xxl-4 mb-5">
+                        <div class="card bg-light border-0 h-100">
+                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4">
+                                    <i class="bi bi-file-earmark-medical"></i>
+                                </div>
+                                <h2 class="fs-4 fw-bold">Albergamos a personas vulnerables</h2>
+                                <p class="mb-0">Simpre que una persona lo necesite le daremos albergue.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xxl-4 mb-5">
+                        <div class="card bg-light border-0 h-100">
+                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-clipboard2-pulse" viewBox="0 0 16 16">
+                                        <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                        <path d="M3 2.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 0 0-1h-.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1H12a.5.5 0 0 0 0 1h.5a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5z"/>
+                                        <path d="M9.979 5.356a.5.5 0 0 0-.968.04L7.92 10.49l-.94-3.135a.5.5 0 0 0-.926-.08L4.69 10H4.5a.5.5 0 0 0 0 1H5a.5.5 0 0 0 .447-.276l.936-1.873 1.138 3.793a.5.5 0 0 0 .968-.04L9.58 7.51l.94 3.135A.5.5 0 0 0 11 11h.5a.5.5 0 0 0 0-1h-.128z"/>
+                                    </svg>
+                                    </div>
+                                <h2 class="fs-4 fw-bold">Servicio medico</h2>
+                                <p class="mb-0">Podemos dar consultas gratis a personas que lo necesiten.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xxl-4 mb-5">
+                        <div class="card bg-light border-0 h-100">
+                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-capsule" viewBox="0 0 16 16">
+                                      <path d="M1.828 8.9 8.9 1.827a4 4 0 1 1 5.657 5.657l-7.07 7.071A4 4 0 1 1 1.827 8.9Zm9.128.771 2.893-2.893a3 3 0 1 0-4.243-4.242L6.713 5.429z"/>
+                                    </svg>
+                                    </div>
+                                <h2 class="fs-4 fw-bold">Medicamentos</h2>
+                                <p class="mb-0">Contamos con medicamentos basicos para pacientes que lo requieran.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xxl-4 mb-5">
+                        <div class="card bg-light border-0 h-100">
+                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-feather2" viewBox="0 0 16 16">
+                                      <path d="M7.5 1.063v9.556L6 8.819V3a2 2 0 0 1 1.5-1.937M8 0a3 3 0 0 0-3 3v6a.5.5 0 0 0 .116.32L7.5 12.181V15.5a.5.5 0 0 0 1 0v-3.319l2.384-2.86A.5.5 0 0 0 11 9V3a3 3 0 0 0-3-3m.5 1.063A2 2 0 0 1 10 3v.293l-1.5 1.5zM10 4.707V8.82l-1.5 1.8V6.207z"/>
+                                    </svg>
+                                    </div>
+                                <h2 class="fs-4 fw-bold">Somos una organizacion autonoma</h2>
+                                <p class="mb-0">Nuestros servicios son propios</p>
+                            </div>
+                        </div>
+                    </div>                   
+                </div>
+            </div>
+        <hr class="border border-primary border-3 opacity-75">
+        </section>
+
+        <!--Section Beneficios-->
+        <section class="py-5 pt-4">
+            <div class="container px-lg-5">
+                <div class="card mb-3" style="max-width: 100%;">
+                  <div class="row g-0">
+                    <div class="col-md-4">
+                      <img src="{% static 'home/images/alv_1.jpeg' %}" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title">Beneficios</h5>
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        <!--Cards de veneficios en row-->
+                        <div class="row">
+                          <div class="col-sm-6 mb-3 mb-sm-0">
+                            <div class="icon-wrapper">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
+                                  <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1"/>
+                                </svg>
+                            </div>
+                            <div class="card-title">
+                                Beneficio 1
+                            </div>
+                          </div>
+
+                          <div class="col-sm-6">
+                            <div class="icon-wrapper">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
+                                  <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1"/>
+                                </svg>
+                            </div>
+                            <div class="card-title">
+                                Beneficio 2
+                            </div>
+                          </div>
+                        </div>
+                        <!--Cards de veneficios en row-->
+                    </div>
+                  </div>
+                </div>
+            </div>  
+        </section>
+        <!--End Section Beneficios-->
+        <hr class="border border-primary border-3 opacity-75">
+
+        <!--Section Contactanos-->
+        <section class="py-5 pt-4">
+            <div class="container px-lg-5">             
+                <div class="row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <div class="card">
+                      <div class="card-body text-white">
+                        <!--Contactanos-->
+                        <div class="info-wrap bg-info w-100 p-lg-5 p-4">
+                            <h3 class="mb-4 mt-md-4">Contactanos</h3>
+                            <div class="dbox w-100 d-flex align-items-start">
+                                <div class="icon d-flex align-items-center justify-content-center p-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                                      <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/>
+                                      <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                                    </svg>
+                                </div>
+                                <div class="text pl-3">
+                                    <p><span>Direccion:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
+                                </div>
+                            </div>
+                            <div class="dbox w-100 d-flex align-items-center">
+                                <div class="icon d-flex align-items-center justify-content-center p-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-phone" viewBox="0 0 16 16">
+                                      <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                                      <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+                                    </svg>
+                                </div>
+                                <div class="text pl-3">
+                                    <p><span> Telefono: </span> +52 44 2355 98</p>
+                                </div>
+                            </div>
+                            <div class="dbox w-100 d-flex align-items-center">
+                                <div class="icon d-flex align-items-center justify-content-top p-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                                      <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/>
+                                    </svg>
+                                </div>
+                                <div class="text pl-3">
+                                    <p><span> Email: </span>divino.redentor@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="dbox w-100 d-flex align-items-center">
+                                <div class="icon d-flex align-items-center justify-content-center p-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-hand-index" viewBox="0 0 16 16">
+                                      <path d="M6.75 1a.75.75 0 0 1 .75.75V8a.5.5 0 0 0 1 0V5.467l.086-.004c.317-.012.637-.008.816.027.134.027.294.096.448.182.077.042.15.147.15.314V8a.5.5 0 1 0 1 0V6.435l.106-.01c.316-.024.584-.01.708.04.118.046.3.207.486.43.081.096.15.19.2.259V8.5a.5.5 0 0 0 1 0v-1h.342a1 1 0 0 1 .995 1.1l-.271 2.715a2.5 2.5 0 0 1-.317.991l-1.395 2.442a.5.5 0 0 1-.434.252H6.035a.5.5 0 0 1-.416-.223l-1.433-2.15a1.5 1.5 0 0 1-.243-.666l-.345-3.105a.5.5 0 0 1 .399-.546L5 8.11V9a.5.5 0 0 0 1 0V1.75A.75.75 0 0 1 6.75 1M8.5 4.466V1.75a1.75 1.75 0 1 0-3.5 0v5.34l-1.2.24a1.5 1.5 0 0 0-1.196 1.636l.345 3.106a2.5 2.5 0 0 0 .405 1.11l1.433 2.15A1.5 1.5 0 0 0 6.035 16h6.385a1.5 1.5 0 0 0 1.302-.756l1.395-2.441a3.5 3.5 0 0 0 .444-1.389l.271-2.715a2 2 0 0 0-1.99-2.199h-.581a5 5 0 0 0-.195-.248c-.191-.229-.51-.568-.88-.716-.364-.146-.846-.132-1.158-.108l-.132.012a1.26 1.26 0 0 0-.56-.642 2.6 2.6 0 0 0-.738-.288c-.31-.062-.739-.058-1.05-.046zm2.094 2.025"/>
+                                    </svg>
+                                </div>
+                                <div class="text pl-3">
+                                    <span>Website: </span>
+                                    divinoredentor.com
+                                    <a href="https://www.divinoredentor.com.mx">Open in chrome</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Contactanos-->
+                      </div>
+                    </div>
+                  </div>
+                    <!--Mapa-->
+                    <div class="col-sm-6">
+                      <div class="card" style="height: 100%; width: 100%;">
+                          <div class="map" style="height: auto; width: 100%;">
+                              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.6167420389026!2d-99.141216!3d19.4326081!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff26c5aefc33%3A0x671f8e8c0bafbb72!2sCiudad%20de%20México%2C%20CDMX%2C%20México!5e0!3m2!1ses!2sus!4v1688494206061!5m2!1ses!2sus" allowfullscreen></iframe>
+                          </div>
+                      </div>
+                    </div>
+                    <!--Mapa-->                
+                </div>
+            </div>  
+        </section>
+        <!--End Section Contactanos-->
+
+
+<!--Fin Contenido-->
+{% endblock contenido %}
