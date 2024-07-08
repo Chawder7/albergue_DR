@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Medicamento</title>
+</head>
+<body>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Categoria</th>
+            <th>Cantidad</th>
+            <th>Caducidad</th>
+        </tr>
+    </thead>
+    <tboody>
+        {% for medicamento in medicamentos  %}
+        <tr>
+            <td>{{medicamento.id}}</td>
+            <td>{{medicamento.nombreMed}}</td>
+            <td>{{medicamento.descripcion}}</td>
+            <td>{{medicamento.categoria}}</td>
+            <td>{{medicamento.cantidad}}</td>
+            <td>{{medicamento.fechaVen}}</td>
+        </tr>
+        {% endfor %}
+    </tboody>
+</table>
+
+<div class="container">
+    <h1>Medicamento Bajo</h1>
+    {% for lowMed in lowMeds %}
+    <div class="card" style="width: 18rem;">
+        <img src="{{lowMed.fotoMed.url}}" class="card-img-top" width="100"  alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{lowMed.nombreMed}}</h5>
+          <p class="card-text">{{lowMed.descripcion}}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</body>
+</html>
