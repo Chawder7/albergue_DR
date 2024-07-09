@@ -17,17 +17,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from home import views as home_views 
-from farmacia import views
+from farmacia import views as farmacia_views
 from paciente import views as paciente_views
 from django.conf import settings
+from receta import views as receta_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_views.index, name='Index'),
-    path('farmacia/', views.allMedicamentos, name="Medicamentos"),
-    path('altamedicamento/', views.altaMedicamento, name = "AltaMed"),
-    path('registrar/', views.registrarMedicamento, name = "RegistrarMed"),
+    path('farmacia/', farmacia_views.allMedicamentos, name="Medicamentos"),
+    path('altamedicamento/', farmacia_views.altaMedicamento, name = "AltaMed"),
+    path('registrar/', farmacia_views.registrarMedicamento, name = "RegistrarMed"),
     path('pacientes/', paciente_views.pacientes, name = "Pacientes"),
+    path('recetas/',receta_views.viewReceta,name="Recetas"),
+
 ]
 
 if settings.DEBUG:
