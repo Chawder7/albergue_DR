@@ -4,42 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar Medicamento</title>
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'home/css/styles.css'%}">
 </head>
-<body>
+<body class = "bodyForm">
     <div class="form-container">
         <h2>Agregar medicamento</h2>
         <form action="{%url 'RegistrarMed'%}" method="POST" role="form" enctype="multipart/form-data">
             {% csrf_token %}
-            <div class="form-group">
-                <div class="input-column">
+            <div class="container1">
+                <div class="form-group">
                     <label>Nombre medicamento</label>
-                    <input type="text" name="nombreMed" required>
+                    <input type="text" name="nombreMed" required placeholder = "Nombre">
                 </div>
-                <div class="input-column">
+                <div class="form-group">
                     <label>Categoría</label>
-                    <input type="text" name="categoria" required>
+                    <input type="text" name="categoria" required placeholder = "Categoría">
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="input-column">
+                <div class="form-group">
                     <label>Cantidad</label>
-                    <input type="number" name="cantidad" min="1" step="1" required>
+                    <input type="number" name="cantidad" min="1" step="1" required placeholder = "Cantidad">
                 </div>
-                <div class="input-column">
+                <div class="form-group">
                     <label>Fecha de Vencimiento</label>
                     <input type="date" name="fechaVen" required>
                 </div>
             </div>
             <div class="form-group">
                 <label>Descripción</label>
-                <textarea name="descripcion" rows="4"></textarea>
+                <textarea name="descripcion" rows="4" placeholder = "Descripción..."></textarea>
             </div>
             <div class="form-group">
                 <label>Imagen</label>
                 <input type="file" name="fotoMed" />
             </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary" value = "Enviar">
+            <div class="form-button">
+                <input type="submit" class="btn btn-primary" value = "Aceptar">
                 <button type="button" class="btn btn-secondary">Cancelar</button>
             </div>
         </form>
