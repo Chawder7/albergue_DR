@@ -92,6 +92,42 @@
   }
 }
 
+.content {
+  padding: 20px;
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #fff;
+  
+}
+.receta-header {
+  margin-bottom: 20px;
+}
+.receta-header h2 {
+  margin: 0;
+  font-size: 24px;
+}
+.receta-header p {
+  margin: 5px 0;
+  color: #666;
+}
+.receta-body {
+  margin: 20px 0;
+  color: #333;
+}
+.inventory {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+.inventory div {
+  text-align: center;
+}
+.inventory div span {
+  display: block;
+  font-size: 20px;
+  color: #4a90e2;
+}
+
 /* no delete */
 .map {
   flex-grow: 1;
