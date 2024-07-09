@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from home import views as home_views 
 from farmacia import views
+from paciente import views as paciente_views
 from django.conf import settings
 
 urlpatterns = [
@@ -26,7 +27,7 @@ urlpatterns = [
     path('farmacia/', views.allMedicamentos, name="Medicamentos"),
     path('altamedicamento/', views.altaMedicamento, name = "AltaMed"),
     path('registrar/', views.registrarMedicamento, name = "RegistrarMed"),
-
+    path('pacientes/', paciente_views.pacientes, name = "Pacientes"),
 ]
 
 if settings.DEBUG:
