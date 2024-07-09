@@ -92,6 +92,7 @@
   }
 }
 
+/* recetaInfo */
 .content {
   padding: 20px;
   max-width: 800px;
@@ -126,6 +127,46 @@
   display: block;
   font-size: 20px;
   color: #4a90e2;
+}
+
+/* pacienteInfo */
+.profile-image{
+  width: 100px;
+  height: auto;
+}
+
+.profile-card {
+  text-align: center;
+  padding: 20px;
+}
+.prescription-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.prescription-card h2 {
+  margin: 0;
+  font-size: 32px;
+  color: #001f3f;
+}
+.prescription-card p {
+  margin: 10px 0;
+  color: #6c757d;
+}
+.prescription-card a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+.prescription-card a:hover {
+  text-decoration: underline;
+}
+.section-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #001f3f;
 }
 
 /* no delete */

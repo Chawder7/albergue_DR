@@ -31,6 +31,7 @@ urlpatterns = [
     path('pacientes/', paciente_views.pacientes, name = "Pacientes"),
     path('recetas/',receta_views.viewReceta,name="Recetas"),
     path('recetaInfo/',receta_views.recetaDetalles,name="infoReceta"),
+    path('pacienteInfo/',paciente_views.pacienteDetalles,name="infoPaciente"),
 
 
 ]
