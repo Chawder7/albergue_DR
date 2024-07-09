@@ -12,7 +12,7 @@ genero_opcion = [
 class Paciente(models.Model):
     id = models.AutoField(primary_key=True)
     nombrePaciente = models.TextField(verbose_name="Nombre")
-    apellidoPaciente = models.TextField(verbose_name="Apellido", null=True)
+    apellidoPaciente = models.TextField(verbose_name="Apellido", null=True, blank=True)
     edad = models.IntegerField(verbose_name="Edad")
     genero = models.IntegerField(
         null=False,
