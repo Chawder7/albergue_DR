@@ -16,7 +16,7 @@ class Medicamentos(models.Model):
     class Meta:
         verbose_name = "Medicamento"
         verbose_name_plural = "Medicamentos"
-        ordering = ["cantidad"]
+        ordering = ["id"]
 
     def __str__(self):
         return self.nombreMed

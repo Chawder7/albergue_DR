@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agregar Medicamento</title>
-    {%load static%}
-    <link rel="stylesheet" href="{%static 'home/css/styles.css'%}">
-</head>
-<body class = "bodyForm">
+{% extends "home/base.html" %}
+{% block titulo %}Agregar Medicamento{% endblock titulo %} 
+{% block contenido %}
+<section class="sectionForm">
     <div class="form-container">
         <h2>Agregar medicamento</h2>
         <form action="{%url 'RegistrarMed'%}" method="POST" role="form" enctype="multipart/form-data">
@@ -44,5 +38,5 @@
             </div>
         </form>
     </div>
-</body>
-</html>
+</section>
+{% endblock contenido %}
