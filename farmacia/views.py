@@ -28,8 +28,8 @@ def registrarMedicamento(request):
 def allMedicamentos(request):
     medicamentos = Medicamentos.objects.all().only("id","nombreMed","descripcion","categoria","cantidad","fechaVen")
     lowMeds = Medicamentos.objects.filter(cantidad__lte=20)
-    consutla ={
+    consulta ={
         "medicamentos":medicamentos,
         "lowMeds":lowMeds
     }
-    return render(request, "farmacia/viewFarmacia.html",consutla)
+    return render(request, "farmacia/viewFarmacia.html",consulta)

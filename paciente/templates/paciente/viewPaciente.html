@@ -1,0 +1,88 @@
+{% extends "home/base.html" %}
+{% block titulo %}Pacientes{% endblock  %}
+
+{% block contenido %}
+<div class="text-center" style= "padding:10px">
+    <h1>Pacientes </h1>
+</div>
+<container class="container-table">
+    <div class="container-button">
+        <div class="box">
+    <input type="search">
+    <button  type="button">Buscar</button>
+        </div>
+    </div>
+    <div class= "container-table">
+<table class="table table-bordered border-purple text-center align-middle">
+    <thead class= "table-purple">
+        <tr class="text-white">
+            <th>Clave</th>
+            <th>Nombre</th>
+            <th>Edad</th>
+            <th>Género</th>
+            <th>Recetas</th>
+            <th>Detalles</th>
+        </tr>
+    </thead>
+    <tboody>
+        <tr>
+            <td>01</td>
+            <td>Hugo</td>
+            <td>22</td>
+            <td>M</td>
+            <td>003</td>
+            <td><a href="{% url "infoPaciente" %}"><i class = "bi bi-eye"></a></i></td>
+        </tr>
+        <tr>
+            <td>02</td>
+            <td>Alex</td>
+            <td>22</td>
+            <td>M</td>
+            <td>002</td>
+            <td><i class = "bi bi-eye"></i></td>
+        </tr>
+        <tr>
+            <td>01</td>
+            <td>Hugo</td>
+            <td>22</td>
+            <td>M</td>
+            <td>003</td>
+            <td><i class = "bi bi-eye"></i></td>
+        </tr>
+        <tr>
+            <td>01</td>
+            <td>Hugo</td>
+            <td>22</td>
+            <td>M</td>
+            <td>003</td>
+            <td><i class = "bi bi-eye"></i></td>
+        </tr>
+        <tr>
+            <td>01</td>
+            <td>Hugo</td>
+            <td>22</td>
+            <td>M</td>
+            <td>003</td>
+            <td><i class = "bi bi-eye"></i></td>
+        </tr>
+        <tr>
+            <td>01</td>
+            <td>Hugo</td>
+            <td>22</td>
+            <td>M</td>
+            <td>003</td>
+            <td><i class = "bi bi-eye"></i></td>
+        </tr>
+        <tr>
+            <td>01</td>
+            <td>Hugo</td>
+            <td>22</td>
+            <td>M</td>
+            <td>003</td>
+            <td><i class = "bi bi-eye"></i></td>
+        </tr>
+    </tboody>
+</table>
+</div>
+</container>
+{% endblock  %}

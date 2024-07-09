@@ -1,42 +1,56 @@
 {% extends 'home/base.html' %}
-
+{%block titulo%}
+  Albergue Divino Redentor
+{%endblock titulo%}
 {% block contenido %}
 <!--Contenido-->
         {% load static %}
         <!-- Carrousel-->
         <header>
-            <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-              <div class="carousel-inner">
-                <div class="carousel-item active position-relative" data-bs-interval="10000">
-                  <img src="{% static 'home/images/alv_1.jpeg' %}" class="d-block w-100" height="500" alt="...">
-                    <div class="carousel-caption d-none d-md-block position-absolute bottom-50 end-50">
-                        <h2 class="text-white">Albergue divino Redentor</h2>
-                        <h3 class="text-white text-opacity-80">Estamos ahi para ti!</h3>
+    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active position-relative" data-bs-interval="10000">
+                <div class="overlay"></div>
+                <img src="{% static 'home/images/alv_1.jpeg' %}" class="d-block w-100" height="500" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <div class="wrap text-car position-absolute bottom-50 end-50">
+                        <h2 class="text-title">Divino Redentor</h2>
+                        <h3 class="text-subtitle">Un albergue para ti!</h3>
                     </div>
                 </div>
-                <div class="carousel-item position-relative" data-bs-interval="2000">
-                  <img src="{% static 'home/images/alv_4.jpg' %}" class="d-block w-100" height="500" alt="...">
-                    <div class="carousel-caption d-none d-md-block position-absolute bottom-50 end-50">
-                        <h2>Desde hace 5 años!</h2>
-                    </div>               
-                </div>
-                <div class="carousel-item position-relative">
-                  <img src="{% static 'home/images/alv_3.jpg' %}" class="d-block w-100" height="500" alt="...">
-                    <div class="carousel-caption d-none d-md-block position-absolute bottom-50 end-50">
-                        <h2>Cuidando a quien lo necesita!</h2>
-                    </div>
-                </div>
-              </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
             </div>
-        </header>
+            <div class="carousel-item position-relative" data-bs-interval="2000">
+                <div class="overlay"></div>
+                <img src="{% static 'home/images/alv_4.jpg' %}" class="d-block w-100" height="500" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <div class="wrap text-car position-absolute bottom-50 end-50">
+                        <h2 class="text-title">Mas de 7 años de servicio.</h2>
+                        <h3 class="text-subtitle"><strong>+</strong> de 700 personas que ayudamos!</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item position-relative">
+                <div class="overlay"></div>
+                <img src="{% static 'home/images/alv_3.jpg' %}" class="d-block w-100" height="500" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <div class="wrap text-car position-absolute bottom-50 end-50">
+                        <h2 class="text-title">Servicio medico!</h2>
+                        <h2 class="text-subtitle">Siempre cuidando de quien lo necesita!</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</header>
+
         <div class="py-5 d-flex justify-content-center">
             <h2><strong>Caracteristicas</strong></h2>
         </div>
@@ -100,7 +114,6 @@
                     </div>                   
                 </div>
             </div>
-        <hr class="border border-primary border-3 opacity-75">
         </section>
 
         <!--Section Beneficios-->
@@ -117,25 +130,19 @@
                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                         <!--Cards de veneficios en row-->
                         <div class="row">
-                          <div class="col-sm-6 mb-3 mb-sm-0">
-                            <div class="icon-wrapper">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
-                                  <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1"/>
-                                </svg>
-                            </div>
+                          <div class="col-sm-6 mb-3 mb-sm-0">                
+                              <i class="bi bi-briefcase h1"></i>                         
                             <div class="card-title">
-                                Beneficio 1
+                                Profecionalismo
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                             </div>
                           </div>
 
                           <div class="col-sm-6">
-                            <div class="icon-wrapper">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
-                                  <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1"/>
-                                </svg>
-                            </div>
+                            <i class="bi bi-award-fill h1"></i> 
                             <div class="card-title">
-                                Beneficio 2
+                                Etica
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                             </div>
                           </div>
                         </div>
@@ -146,7 +153,6 @@
             </div>  
         </section>
         <!--End Section Beneficios-->
-        <hr class="border border-primary border-3 opacity-75">
 
         <!--Section Contactanos-->
         <section class="py-5 pt-4">

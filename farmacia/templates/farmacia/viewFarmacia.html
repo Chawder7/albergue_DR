@@ -1,20 +1,32 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agregar Medicamento</title>
-</head>
-<body>
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr>
+{% extends "home/base.html" %}
+{% block titulo %}Farmacia{% endblock  %}
+
+{% block contenido %}
+<div class="text-center" style= "padding:10px">
+    <h1>Inventario </h1>
+</div>
+<container class="container-table">
+    <div class="container-button">
+        <div class="box">
+    <input type="search">
+    <button  type="button">Buscar</button>
+        </div>
+    <div class="box">
+    <button type="submit"><i class="bi bi-plus-square"></i></button>
+    </div>
+    </div>
+    <div class= "container-table">
+<table class="table table-bordered border-purple text-center align-middle">
+    <thead class= "table-purple">
+        <tr class="text-white">
             <th>ID</th>
             <th>Nombre</th>
             <th>Descripcion</th>
             <th>Categoria</th>
             <th>Cantidad</th>
             <th>Caducidad</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
         </tr>
     </thead>
     <tboody>
@@ -26,22 +38,30 @@
             <td>{{medicamento.categoria}}</td>
             <td>{{medicamento.cantidad}}</td>
             <td>{{medicamento.fechaVen}}</td>
+            <td><i class="bi bi-pencil"></i></td>
+            <td><i class="bi bi-trash"></i></td>
         </tr>
         {% endfor %}
     </tboody>
 </table>
-
-<div class="container">
+</div>
+<div class="text-center">
     <h1>Medicamento Bajo</h1>
-    {% for lowMed in lowMeds %}
-    <div class="card" style="width: 18rem;">
+</div>
+    <div class="container mt-4">
+        <div class="row">
+            {% for lowMed in lowMeds %}
+            <div class="col-md-3 mb-4"> 
+    <div class="card">
         <img src="{{lowMed.fotoMed.url}}" class="card-img-top" width="100"  alt="...">
         <div class="card-body">
           <h5 class="card-title">{{lowMed.nombreMed}}</h5>
           <p class="card-text">{{lowMed.descripcion}}</p>
         </div>
     </div>
-    {% endfor %}
-</div>
-</body>
-</html>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</container>
+{% endblock  %}

@@ -43,6 +43,7 @@
   --bs-light: #f8f9fa;
   --bs-dark: #212529;
   --bs-primary-rgb: 13, 110, 253;
+  --bs-purple-rgb: 75, 0, 130;
   --bs-secondary-rgb: 108, 117, 125;
   --bs-success-rgb: 25, 135, 84;
   --bs-info-rgb: 13, 202, 240;
@@ -91,7 +92,84 @@
   }
 }
 
-/* delete */
+/* recetaInfo */
+.content {
+  padding: 20px;
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #fff;
+  
+}
+.receta-header {
+  margin-bottom: 20px;
+}
+.receta-header h2 {
+  margin: 0;
+  font-size: 24px;
+}
+.receta-header p {
+  margin: 5px 0;
+  color: #666;
+}
+.receta-body {
+  margin: 20px 0;
+  color: #333;
+}
+.inventory {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+.inventory div {
+  text-align: center;
+}
+.inventory div span {
+  display: block;
+  font-size: 20px;
+  color: #4a90e2;
+}
+
+/* pacienteInfo */
+.profile-image{
+  width: 100px;
+  height: auto;
+}
+
+.profile-card {
+  text-align: center;
+  padding: 20px;
+}
+.prescription-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.prescription-card h2 {
+  margin: 0;
+  font-size: 32px;
+  color: #001f3f;
+}
+.prescription-card p {
+  margin: 10px 0;
+  color: #6c757d;
+}
+.prescription-card a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+.prescription-card a:hover {
+  text-decoration: underline;
+}
+.section-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #001f3f;
+}
+
+/* no delete */
 .map {
   flex-grow: 1;
   height: 500px; /* Ajusta esta altura según tus necesidades */
@@ -101,7 +179,49 @@
   height: 100%;
   border: none;
  }
-/* delete */
+.wrap{
+  /* background-color: #fff; */
+  padding: 2rem 3rem;
+  text-align: center;
+  color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 25px #222;
+  backdrop-filter: blur(10px);
+}
+
+.text-title{
+  font-size: 3.0rem;
+  
+  /* color: white;
+  background-color: rgba(51, 45, 45, 0.5); /* Fondo negro semitransparente 
+  padding: 10px;
+  border-radius: 5px; */
+
+
+  /* color: yellow;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); */
+
+  /* color: black;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.7); */
+
+  color: white;
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);
+}
+
+.text-subtitle{
+  font-size: 1.4rem;
+}
+
+.overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/*no delete */
 
 body {
   margin: 0;
@@ -396,6 +516,7 @@ button,
 [type=reset],
 [type=submit] {
   -webkit-appearance: button;
+  appearance: button;
 }
 button:not(:disabled),
 [type=button]:not(:disabled),
@@ -454,6 +575,7 @@ legend + * {
 [type=search] {
   outline-offset: -2px;
   -webkit-appearance: textfield;
+  appearance: textfield;
 }
 
 /* rtl:raw:
@@ -475,6 +597,7 @@ legend + * {
 ::file-selector-button {
   font: inherit;
   -webkit-appearance: button;
+  appearance: buttom;
 }
 
 output {
@@ -652,7 +775,22 @@ progress {
   margin-right: auto;
   margin-left: auto;
 }
+.container-table{
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
 
+.container-button{
+  display: flex;
+  justify-content: space-between;
+}
+.box{
+  width: 25%;
+  padding: 10px;
+  text-align: center;
+}
 @media (min-width: 576px) {
   .container-sm, .container {
     max-width: 540px;
@@ -1936,7 +2074,9 @@ progress {
   color: var(--bs-table-color);
   border-color: var(--bs-table-border-color);
 }
-
+.table-purple{
+  --bs-table-bg:#4b0082;
+}
 .table-responsive {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -7187,7 +7327,10 @@ textarea.form-control-lg {
   --bs-border-opacity: 1;
   border-color: rgba(var(--bs-primary-rgb), var(--bs-border-opacity)) !important;
 }
-
+.border-purple{
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-purple-rgb), var(--bs-border-opacity)) !important;
+}
 .border-secondary {
   --bs-border-opacity: 1;
   border-color: rgba(var(--bs-secondary-rgb), var(--bs-border-opacity)) !important;
@@ -11568,4 +11711,147 @@ textarea.form-control-lg {
   height: 4rem;
   width: 4rem;
   font-size: 2rem;
+}
+
+.sectionForm {
+  font-family: Arial, sans-serif;
+  background-color: #d3e5f3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.form-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: calc(100% - 10px);
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.form-group input[type="number"] {
+  display: block;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.btn {
+  width: calc(50% - 10px);
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-sizing: border-box;
+  margin: 5px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+.container1{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; 
+  width: 100%; 
+}
+
+.form-group{
+  flex: 0 0 48%; 
+  box-sizing: border-box; 
+  margin-bottom: 15px; 
+  border: 1px solid #e2d5d5; 
+  padding: 10px;
+  border-radius: 15px;
+}
+
+.form-button{
+  display: flex;
+  justify-content: flex-start; 
+  gap: 10px; 
+}
+
+.imagen{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.drop-area{
+  width: 300px;
+  height: 300px;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9f9ff;
+  text-align: center; 
+  padding: 20px;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: relative;
+}
+
+.drop-area p{
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.file-input{
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 }
