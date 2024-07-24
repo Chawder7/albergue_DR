@@ -22,65 +22,21 @@
             <th>Género</th>
             <th>Recetas</th>
             <th>Detalles</th>
+            <th>Eliminar</th>
         </tr>
     </thead>
     <tboody>
+        {% for paciente in pacientes  %}
         <tr>
-            <td>01</td>
-            <td>Hugo</td>
-            <td>22</td>
-            <td>M</td>
-            <td>003</td>
+            <td>{{paciente.id}}</td>
+            <td>{{paciente.nombrePaciente}} {{paciente.apellidoPaciente}}</td>
+            <td>{{paciente.edad}}</td>
+            <td>{{paciente.get_genero_display}}</td>
+            <td>{{paciente.num_recetas}}</td>
             <td><a href="{% url "infoPaciente" %}"><i class = "bi bi-eye"></a></i></td>
+            <td><i class="bi bi-trash"></i></td>
         </tr>
-        <tr>
-            <td>02</td>
-            <td>Alex</td>
-            <td>22</td>
-            <td>M</td>
-            <td>002</td>
-            <td><i class = "bi bi-eye"></i></td>
-        </tr>
-        <tr>
-            <td>01</td>
-            <td>Hugo</td>
-            <td>22</td>
-            <td>M</td>
-            <td>003</td>
-            <td><i class = "bi bi-eye"></i></td>
-        </tr>
-        <tr>
-            <td>01</td>
-            <td>Hugo</td>
-            <td>22</td>
-            <td>M</td>
-            <td>003</td>
-            <td><i class = "bi bi-eye"></i></td>
-        </tr>
-        <tr>
-            <td>01</td>
-            <td>Hugo</td>
-            <td>22</td>
-            <td>M</td>
-            <td>003</td>
-            <td><i class = "bi bi-eye"></i></td>
-        </tr>
-        <tr>
-            <td>01</td>
-            <td>Hugo</td>
-            <td>22</td>
-            <td>M</td>
-            <td>003</td>
-            <td><i class = "bi bi-eye"></i></td>
-        </tr>
-        <tr>
-            <td>01</td>
-            <td>Hugo</td>
-            <td>22</td>
-            <td>M</td>
-            <td>003</td>
-            <td><i class = "bi bi-eye"></i></td>
-        </tr>
+        {% endfor %}
     </tboody>
 </table>
 </div>
