@@ -17,7 +17,7 @@ def pacientes(request):
             Q(apellidoPaciente__icontains=query)
         )
 
-    paginacion = Paginator(lista_pacientes,1)
+    paginacion = Paginator(lista_pacientes,8)
     pagina = request.GET.get('page')
     try:
         pacientes = paginacion.page(pagina)
