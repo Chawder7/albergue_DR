@@ -11748,7 +11748,8 @@ h2 {
 }
 
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.form-group select {
   width: calc(100% - 10px);
   padding: 5px;
   font-size: 16px;
