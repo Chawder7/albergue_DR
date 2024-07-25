@@ -8,8 +8,10 @@
 <container class="container-table">
     <div class="container-button">
         <div class="box">
-    <input type="search">
-    <button  type="button">Buscar</button>
+            <form method="GET" action="{% url 'Pacientes' %}">
+    <input type="search" name="busqueda" value="{{query}}" placeholder="Buscar">
+    <button  type="submit">Buscar</button>
+            </form>
         </div>
     </div>
     <div class= "container-table">
@@ -22,67 +24,68 @@
             <th>Género</th>
             <th>Recetas</th>
             <th>Detalles</th>
+            <th>Eliminar</th>
         </tr>
     </thead>
     <tboody>
+        {% for paciente in pacientes  %}
         <tr>
-            <td>01</td>
-            <td>Hugo</td>
-            <td>22</td>
-            <td>M</td>
-            <td>003</td>
+            <td>{{paciente.id}}</td>
+            <td>{{paciente.nombrePaciente}} {{paciente.apellidoPaciente}}</td>
+            <td>{{paciente.edad}}</td>
+            <td>{{paciente.get_genero_display}}</td>
+            <td>{{paciente.num_recetas}}</td>
             <td><a href="{% url "infoPaciente" %}"><i class = "bi bi-eye"></a></i></td>
+            <td><i class="bi bi-trash"></i></td>
         </tr>
-        <tr>
-            <td>02</td>
-            <td>Alex</td>
-            <td>22</td>
-            <td>M</td>
-            <td>002</td>
-            <td><i class = "bi bi-eye"></i></td>
-        </tr>
-        <tr>
-            <td>01</td>
-            <td>Hugo</td>
-            <td>22</td>
-            <td>M</td>
-            <td>003</td>
-            <td><i class = "bi bi-eye"></i></td>
-        </tr>
-        <tr>
-            <td>01</td>
-            <td>Hugo</td>
-            <td>22</td>
-            <td>M</td>
-            <td>003</td>
-            <td><i class = "bi bi-eye"></i></td>
-        </tr>
-        <tr>
-            <td>01</td>
-            <td>Hugo</td>
-            <td>22</td>
-            <td>M</td>
-            <td>003</td>
-            <td><i class = "bi bi-eye"></i></td>
-        </tr>
-        <tr>
-            <td>01</td>
-            <td>Hugo</td>
-            <td>22</td>
-            <td>M</td>
-            <td>003</td>
-            <td><i class = "bi bi-eye"></i></td>
-        </tr>
-        <tr>
-            <td>01</td>
-            <td>Hugo</td>
-            <td>22</td>
-            <td>M</td>
-            <td>003</td>
-            <td><i class = "bi bi-eye"></i></td>
-        </tr>
+        {% endfor %}
     </tboody>
 </table>
 </div>
+<div class="pagination">
+    <ul class="pagination-list">
+        {% if pacientes.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page=1{% if query %}&q={{ query }}{% endif %}">&laquo;</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ pacientes.previous_page_number }}{% if query %}&q={{ query }}{% endif %}">&lsaquo;</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">&laquo;</span>
+            </li>
+            <li class="page-item disabled">
+                <span class="page-link">&lsaquo;</span>
+            </li>
+        {% endif %}
+
+        {% for num in pacientes.paginator.page_range %}
+            {% if pacientes.number == num %}
+                <li class="page-item active">
+                    <span class="page-link">{{ num }}</span>
+                </li>
+            {% elif num > pacientes.number|add:-3 and num < pacientes.number|add:3 %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ num }}{% if query %}&q={{ query }}{% endif %}">{{ num }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+
+        {% if pacientes.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ pacientes.next_page_number }}{% if query %}&q={{ query }}{% endif %}">&rsaquo;</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">&rsaquo;</span>
+            </li>
+            <li class="page-item disabled">
+                <span class="page-link">&raquo;</span>
+            </li>
+        {% endif %}
+    </ul>
+</div>
+
 </container>
 {% endblock  %}
