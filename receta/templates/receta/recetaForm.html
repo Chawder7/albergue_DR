@@ -1,0 +1,55 @@
+{%extends "home/base.html"%}
+{%block titulo%}Agregar Receta{%endblock titulo%}
+
+{%block contenido%}
+<section class="sectionForm">
+    <div class="form-container">
+        <h2>Agregar Receta</h2>
+        <form action="{%url 'RegistrarReceta'%}" method="POST" role="form">
+            {% csrf_token %}
+            <div class="container1">
+                <div class="form-group">
+                    <label>Nombre del Paciente</label>
+                    <select name = "paciente" required>
+                        <option value="" disabled selected>Paciente</option>
+                        {% for paciente in pacientes %}
+                            <option value = "{{paciente.id}}">{{paciente.nombrePaciente}} {{paciente.apellidoPaciente}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Medicamento</label>
+                    <select name = "medicamento" required>
+                        <option value="" disabled selected>Medicamento</option>
+                        {% for medicamento in medicamentos %}
+                            <option value = "{{medicamento.id}}">{{medicamento.nombreMed}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Doctor</label>
+                    <select name = "doctor" required>
+                        <option value="" disabled selected>Doctor</option>
+                        {% for usuario in usuarios %}
+                            <option value = "{{usuario.id}}">{{usuario}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Cantidad</label>
+                    <input type="number" name="cantidad" min="1" required placeholder = "Cantidad">
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label>Diagnóstico</label>
+                <textarea name="diagnostico" rows="4" placeholder = "Diagnóstico..."></textarea>
+            </div>
+            <div class="form-button">
+                <input type="submit" class="btn btn-primary" value = "Aceptar">
+                <a href = "{%url 'Recetas'%}" class="btn btn-secondary"> Cancelar</a>
+            </div>
+        </form>
+    </div>
+</section>
+{%endblock contenido%}

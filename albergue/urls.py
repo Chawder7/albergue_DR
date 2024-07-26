@@ -34,6 +34,7 @@ urlpatterns = [
     path('pacienteInfo/',paciente_views.pacienteDetalles,name="infoPaciente"),
     path('altapaciente/', paciente_views.formPaciente, name = "AltaPac"),
     path('registrarpaciente/', paciente_views.registrarPaciente, name = "RegistrarPac"),
+    path('registroreceta/', receta_views.registrarReceta, name = "RegistrarReceta"),
 ]
 
 if settings.DEBUG:
