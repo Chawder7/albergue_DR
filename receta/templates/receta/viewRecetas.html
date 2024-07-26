@@ -3,14 +3,17 @@
 
 {% block contenido %}
 <div class="text-center" style= "padding:10px">
-    <h1>Pacientes </h1>
+    <h1>Recetas</h1>
 </div>
 <container class="container-table">
     <div class="container-button">
         <div class="box">
-    <input type="search">
-    <button  type="button">Buscar</button>
+            <form method="GET" action="{% url 'Recetas' %}">
+                <input type="search" name="busqueda" value="{{query}}" placeholder="Buscar">
+                <button  type="submit" class="button-search">Buscar</button>
+            </form>
         </div>
+        <button class="button-add">Agregar</button>
     </div>
     <div class= "container-table">
 <table class="table table-bordered border-purple text-center align-middle">
@@ -24,71 +27,69 @@
             <th>Cantidad</th>
             <th>Diagnostico</th>
             <th>Detalles</th>
+            <th>Editar</th>
         </tr>
     </thead>
     <tboody>
+        {% for receta in recetas  %}
         <tr>
-            <td>01</td>
-            <td>Hugo</td>
-            <td>Omeprazol</td>
-            <td>Raul</td>
-            <td>July 06, 2024</td>
-            <td>1</td>
-            <td>{% lorem 1 w random %}</td>
+            <td>{{receta.id}}</td>
+            <td>{{ receta.paciente.nombrePaciente }} {{ receta.paciente.apellidoPaciente }}</td>
+            <td>{{receta.medicamento}}</td>
+            <td>{{receta.doctor}}</td>
+            <td>{{receta.created|date:"d/m/Y"}}</td>
+            <td>{{receta.cantidad}}</td>
+            <td>{{receta.diagnostico|striptags|truncatechars:15}}...</td>
             <td><a href="{% url "infoReceta" %}"><i class = "bi bi-eye"></i></a></td>
+            <td><i class="bi bi-pencil"></i></td>
         </tr>
-        <tr>
-            <td>01</td>
-            <td>Hugo</td>
-            <td>Omeprazol</td>
-            <td>Raul</td>
-            <td>July 06, 2024</td>
-            <td>1</td>
-            <td>{% lorem 1 w random %}</td>
-            <td><i class = "bi bi-eye"></i></td>
-        </tr>
-        <tr>
-            <td>01</td>
-            <td>Hugo</td>
-            <td>Omeprazol</td>
-            <td>Raul</td>
-            <td>July 06, 2024</td>
-            <td>1</td>
-            <td>{% lorem 1 w random %}</td>
-            <td><i class = "bi bi-eye"></i></td>
-        </tr>
-        <tr>
-            <td>01</td>
-            <td>Hugo</td>
-            <td>Omeprazol</td>
-            <td>Raul</td>
-            <td>July 06, 2024</td>
-            <td>1</td>
-            <td>{% lorem 1 w random %}</td>
-            <td><i class = "bi bi-eye"></i></td>
-        </tr>
-        <tr>
-            <td>01</td>
-            <td>Hugo</td>
-            <td>Omeprazol</td>
-            <td>Raul</td>
-            <td>July 06, 2024</td>
-            <td>1</td>
-            <td>{% lorem 1 w random %}</td>
-            <td><i class = "bi bi-eye"></i></td>
-        </tr>
-        <tr>
-            <td>01</td>
-            <td>Hugo</td>
-            <td>Omeprazol</td>
-            <td>Raul</td>
-            <td>July 06, 2024</td>
-            <td>1</td>
-            <td>{% lorem 1 w random %}</td>
-            <td><i class = "bi bi-eye"></i></td>
-        </tr>
+        {% endfor %}
     </tboody>
 </table>
+</div>
+<div class="pagination-container">
+    <ul class="pagination-list">
+        {% if pacientes.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page=1{% if query %}&q={{ query }}{% endif %}">&laquo;</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ pacientes.previous_page_number }}{% if query %}&q={{ query }}{% endif %}">&lsaquo;</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">&laquo;</span>
+            </li>
+            <li class="page-item disabled">
+                <span class="page-link">&lsaquo;</span>
+            </li>
+        {% endif %}
+
+        {% for num in pacientes.paginator.page_range %}
+            {% if pacientes.number == num %}
+                <li class="page-item active">
+                    <span class="page-link">{{ num }}</span>
+                </li>
+            {% elif num > pacientes.number|add:-3 and num < pacientes.number|add:3 %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ num }}{% if query %}&q={{ query }}{% endif %}">{{ num }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+
+        {% if pacientes.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ pacientes.next_page_number }}{% if query %}&q={{ query }}{% endif %}">&rsaquo;</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">&rsaquo;</span>
+            </li>
+            <li class="page-item disabled">
+                <span class="page-link">&raquo;</span>
+            </li>
+        {% endif %}
+    </ul>
 </div>
 </container>
 {% endblock  %}
