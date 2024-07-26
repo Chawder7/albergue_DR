@@ -5,7 +5,6 @@ from django.db import models
 genero_opcion = [
     (1, 'M'),
     (2, 'F'),
-    
 ]
 
 
@@ -20,7 +19,7 @@ class Paciente(models.Model):
         verbose_name="Genero",
         choices = genero_opcion,
         default=1)
-    fotoPaciente = models.ImageField(upload_to="fotoPaciente", blank=True, null=True, verbose_name="Fotografia")
+    fotoPaciente = models.FileField(upload_to="fotoPaciente", blank=True, null=True, verbose_name="Fotografia")
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=True)
     

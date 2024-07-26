@@ -1,0 +1,43 @@
+{% extends "home/base.html" %}
+{% block titulo %}Registrar Paciente{% endblock  %}
+
+{% block contenido %}
+<section class="sectionForm">
+    <div class="form-container">
+        <h2>Registar Paciente</h2>
+        <form action="{%url 'RegistrarPac'%}" method="POST" role="form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="container1">
+                <div class="form-group">
+                    <label>Nombre</label>
+                    <input type="text" name="nombrePaciente" required placeholder = "Nombre">
+                </div>
+                <div class="form-group">
+                    <label>Apellidos</label>
+                    <input type="text" name="apellidoPaciente" required placeholder = "Apellidos">
+                </div>
+                <div class="form-group">
+                    <label>Edad</label>
+                    <input type="number" name="edad" min="1" step="1" required placeholder = "Edad">
+                </div>
+                <div class="form-group">
+                    <label>Género</label>
+                    <select name = "genero">
+                        <option value="" disabled selected>Género</option>
+                        <option value = 1>Hombre</option>
+                        <option value = 2>Mujer</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Imagen</label>
+                <input type="file" name="fotoPaciente" />
+            </div>
+            <div class="form-button">
+                <input type="submit" class="btn btn-primary" value = "Aceptar">
+                <button type="button" class="btn btn-secondary">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock  %}

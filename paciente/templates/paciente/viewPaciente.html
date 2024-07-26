@@ -9,10 +9,11 @@
     <div class="container-button">
         <div class="box">
             <form method="GET" action="{% url 'Pacientes' %}">
-    <input type="search" name="busqueda" value="{{query}}" placeholder="Buscar">
-    <button  type="submit">Buscar</button>
+                <input type="search" name="busqueda" value="{{query}}" placeholder="Buscar">
+                <button  type="submit" class="button-search">Buscar</button>
             </form>
         </div>
+        <button class="button-add" onclick="location.href='{% url 'RegistrarPac' %}'">Agregar</button>
     </div>
     <div class= "container-table">
 <table class="table table-bordered border-purple text-center align-middle">
@@ -42,7 +43,7 @@
     </tboody>
 </table>
 </div>
-<div class="pagination">
+<div class="pagination-container">
     <ul class="pagination-list">
         {% if pacientes.has_previous %}
             <li class="page-item">

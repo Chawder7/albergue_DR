@@ -776,21 +776,16 @@ progress {
   margin-left: auto;
 }
 .container-table{
-  padding-top: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 20px;
+  margin: 20px;
 }
 
 .container-button{
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
-.box{
-  width: 25%;
-  padding: 10px;
-  text-align: center;
-}
+
 @media (min-width: 576px) {
   .container-sm, .container {
     max-width: 540px;
@@ -11748,7 +11743,8 @@ h2 {
 }
 
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.form-group select {
   width: calc(100% - 10px);
   padding: 5px;
   font-size: 16px;
@@ -11793,6 +11789,35 @@ h2 {
 
 .btn-secondary:hover {
   background-color: #5a6268;
+}
+
+
+.container-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px
+}
+
+.button-search,
+.button-add {
+  background-color: #007bff; /* Color azul */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px; /* Margen izquierdo */
+}
+
+.button-search:hover,
+.button-add:hover {
+  background-color: #0056b3; /* Color azul oscuro para el hover */
+}
+
+.box {
+  display: flex;
+  align-items: center;
 }
 
 .container1{
@@ -11856,15 +11881,16 @@ h2 {
   cursor: pointer;
 }
 
-.pagination {
-  text-align: center;
-  margin: 20px 0;
+.pagination-container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  margin-top: 20px; /* Ajusta el margen superior según sea necesario */
 }
 
 .pagination-list {
-  display: inline-flex;
   list-style: none;
   padding: 0;
+  display: inline-flex;
 }
 
 .page-item {
@@ -11893,3 +11919,4 @@ h2 {
   background-color: #fff;
   border-color: #dee2e6;
 }
+
