@@ -43,7 +43,22 @@ def registrarPaciente(request):
             fotoPaciente = request.FILES['fotoPaciente']
             insert = Paciente(nombrePaciente = nombrePaciente, apellidoPaciente = apellidoPaciente, edad = edad, genero = genero, fotoPaciente = fotoPaciente)
             insert.save()
-            return render(request, "paciente/formPaciente.html")
+            query = request.GET.get('busqueda','')
+            lista_pacientes =  Paciente.objects.annotate(num_recetas=Count('receta')).only("id","nombrePaciente","apellidoPaciente","edad","genero")
+            if query:
+                pacientes = pacientes.filter(
+                    Q(nombrePaciente__icontains=query) | 
+                    Q(apellidoPaciente__icontains=query)
+                )
+            paginacion = Paginator(lista_pacientes,8)
+            pagina = request.GET.get('page')
+            try:
+                pacientes = paginacion.page(pagina)
+            except PageNotAnInteger:
+                pacientes = paginacion.page(1)
+            except EmptyPage:
+                pacientes = paginacion.page(paginacion.num_pages)
+            return render(request, "paciente/viewPaciente.html",{'pacientes':pacientes, 'query':query})
         else:
             messages.error(request, "Error al procesar el formulario")
     else: 

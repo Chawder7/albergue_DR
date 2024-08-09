@@ -4,7 +4,7 @@
 {% block contenido %}
 <section class="sectionForm">
     <div class="form-container">
-        <h2>Registar Paciente</h2>
+        <h2>Editar Paciente</h2>
         <form action="{%url 'Actualizar' paciente.id %}" method="POST" role="form" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="container1">
