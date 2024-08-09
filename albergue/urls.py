@@ -32,7 +32,10 @@ urlpatterns = [
     path('recetas/',receta_views.viewReceta,name="Recetas"),
     path('recetaInfo/',receta_views.recetaDetalles,name="infoReceta"),
     path('pacienteInfo/',paciente_views.pacienteDetalles,name="infoPaciente"),
-    path('altapaciente/', paciente_views.formPaciente, name = "AltaPac"),
+    path('editarPaciente/<int:id>',paciente_views.editarPaciente,name="Editar"), #
+    path('actualizarPaciente/<int:id>', paciente_views.actualizarPaciente, name = "Actualizar"),
+    #
+    path('eliminarPaciente/<int:id>',paciente_views.eliminarPaciente ,name="Eliminar"),
     path('registrarpaciente/', paciente_views.registrarPaciente, name = "RegistrarPac"),
     path('registroreceta/', receta_views.registrarReceta, name = "RegistrarReceta"),
 ]

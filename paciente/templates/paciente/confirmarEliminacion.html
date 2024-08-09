@@ -1,0 +1,25 @@
+{% extends "home/base.html" %}
+{% block titulo %}Pacientes{% endblock  %}
+
+{% block contenido %}
+
+<div class="text-center" style= "padding:10px">
+    <h1>Pacientes </h1>
+        <form method="POST">
+    {% csrf_token %}
+    <!--Alerta-->
+    <div class="text-bg-danger">
+        <h5>Eliminando Paceinte</h5>
+        <p>¿Estas Seguro de que deseas <strong>Eliminar</strong> el paceinte seleccionado?.</p>
+    </div>
+    <!--Alerta-->
+    <button type="submit" class="btn btn-danger">Si</button>
+    <a href="{% url 'Pacientes'%}" class="btn btn-primary">Cancelar</a>
+</form>
+</div>
+<container class="container-table">
+
+</div>
+
+</container>
+{% endblock  %}

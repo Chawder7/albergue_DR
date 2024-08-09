@@ -25,6 +25,7 @@
             <th>Género</th>
             <th>Recetas</th>
             <th>Detalles</th>
+            <th>Editar</th>
             <th>Eliminar</th>
         </tr>
     </thead>
@@ -37,7 +38,8 @@
             <td>{{paciente.get_genero_display}}</td>
             <td>{{paciente.num_recetas}}</td>
             <td><a href="{% url "infoPaciente" %}"><i class = "bi bi-eye"></a></i></td>
-            <td><i class="bi bi-trash"></i></td>
+            <td><a href="{% url 'Editar' paciente.id%}"><i class="bi bi-pencil"></i></td>
+            <td><a href="{% url 'Eliminar' paciente.id %}"><i class="bi bi-trash"></i></td>
         </tr>
         {% endfor %}
     </tboody>

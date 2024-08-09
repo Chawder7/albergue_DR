@@ -26,7 +26,7 @@ class Paciente(models.Model):
     class Meta:
         verbose_name = "Paciente"
         verbose_name_plural = "Pacientes"
-        ordering = ["-id"]
+        ordering = ["id"]
     
     def __str__(self):
         return self.nombrePaciente
