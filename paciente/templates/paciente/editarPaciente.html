@@ -1,5 +1,5 @@
 {% extends "home/base.html" %}
-{% block titulo %}Registrar Paciente{% endblock  %}
+{% block titulo %}Editar Paciente{% endblock  %}
 
 {% block contenido %}
 <section class="sectionForm">
@@ -44,14 +44,3 @@
     </div>
 </section>
 {% endblock  %}
-
-
-{% comment %} 
-                    <select name = "genero">
-                        {%for selected in form.fields.genero.choises %}
-                        <option value="{{selected}}" {%if form.genero.value == value%} selected{%endif%}>{{label}}</option>
-                        {%endfor%}
-                    </select>
-
-
- {% endcomment %}

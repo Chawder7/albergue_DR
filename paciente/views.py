@@ -28,11 +28,9 @@ def pacientes(request):
 
     return render(request, "paciente/viewPaciente.html",{'pacientes':pacientes, 'query':query})
 
-def pacienteDetalles(request):
-    return render(request, "paciente/viewPacienteInfo.html")
-
-def formPaciente(request):
-    return render(request, "paciente/formPaciente.html")
+def pacienteDetalles(request, id):
+    paciente = Paciente.objects.get(id=id)
+    return render(request, "paciente/viewPacienteInfo.html", {'paciente':paciente})
 
 def registrarPaciente(request):
     if request.method == 'POST':
@@ -86,3 +84,7 @@ def actualizarPaciente(request, id):
         return render(request, "paciente/viewPaciente.html",{'pacientes':pacientes, 'query':query})
     return render(request, "paciente/editarPaciente.html", {'paciente':aPaciente})
 
+
+
+#     return render(request, "paciente/formPaciente.html")
+# def formPaciente(request):

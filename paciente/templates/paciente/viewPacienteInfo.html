@@ -1,19 +1,15 @@
 {% extends "home/base.html" %} 
-{% block titulo %} Paciente info {% endblock %}
+{% block titulo %} Informacion del Paciente {% endblock %}
 
 {% block contenido %}
 <div class="container mt-4">
   <div class="row justify-content-center">
     <div class="col-md-6">
       <div class="profile-card bg-light">
-        <img
-        src="https://ceslava.s3-accelerate.amazonaws.com/2016/04/rZoltXj1-mistery-man-gravatar-wordpress-avatar-persona-misteriosa-510x510.png"
-          alt="Profile Image"
-          class="img-fluid rounded-circle mb-3 profile-image"
-        />
-        <h2>Cristian Jesus</h2>
-        <p>Edad 18 años</p>
-        <p>Género Hombre</p>
+        <img src="{{paciente.fotoPaciente.url}}" alt="Profile Image" class="img-fluid rounded-circle mb-3 profile-image"/>
+        <h2>{{paciente.nombrePaciente}} {{paciente.apellidoPaciente}}</h2>
+        <p>Edad {{paciente.edad}} años</p>
+        <p>Género {%if paciente.genero == 1%} Masculino {%elif paciente.genero == 2%}Femenino{%endif%}</p>
       </div>
     </div>
   </div>
