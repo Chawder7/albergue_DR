@@ -24,6 +24,7 @@ urlpatterns = [
 
     path('recetas/',receta_views.viewReceta,name="Recetas"),
     path('recetaInfo/<int:id>/',receta_views.recetaDetalles,name="infoReceta"),
+    path('eliminarReceta/<int:id>/',receta_views.eliminarReceta,name="DeleteReceta"),
     path('registroreceta/', receta_views.registrarReceta, name="RegistrarReceta"),
 ]
 

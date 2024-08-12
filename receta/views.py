@@ -4,6 +4,8 @@ from .models import Medicamentos
 from django.contrib.auth.models import User
 from receta.models import Receta
 from .forms import RecetaForm
+from django.shortcuts import get_object_or_404
+
 
 # Create your views here.
 
@@ -14,6 +16,14 @@ def viewReceta(request):
 def recetaDetalles(request, id):
     receta = Receta.objects.get(id=id)
     return render(request, "receta/viewRecetasInfo.html", {'receta': receta})
+
+def eliminarReceta(request, id):
+    receta = get_object_or_404(Receta, id=id)
+    
+    receta.delete()
+    recetas = Receta.objects.all()
+    return render(request, 'receta/viewRecetas.html', {'recetas': recetas})
+    
 
 def registrarReceta(request):
     if request.method == 'POST':
