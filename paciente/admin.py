@@ -3,7 +3,7 @@ from .models import Paciente
 # Register your models here.
 
 class administrarPaciente(admin.ModelAdmin):
-    readonly_fields = ('created', 'updated')
+    readonly_fields = ('created', 'updated', 'id')
     list_display = ('nombrePaciente','apellidoPaciente','edad','genero')
     
     

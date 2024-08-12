@@ -7,7 +7,7 @@ class CustomClearableFileInput(ClearableFileInput):
 class PacienteForm(ModelForm):
     class Meta:
         model = Paciente
-        fields = ('nombrePaciente', 'apellidoPaciente', 'edad', 'genero')
+        fields = ('nombrePaciente', 'apellidoPaciente', 'edad', 'genero', 'fotoPaciente')
         widgets = {
             'fotoPaciente': CustomClearableFileInput
         }
