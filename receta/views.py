@@ -8,10 +8,12 @@ from .forms import RecetaForm
 # Create your views here.
 
 def viewReceta(request):
-    return render(request,"receta/viewRecetas.html")
+    recetas = Receta.objects.all()
+    return render(request,"receta/viewRecetas.html", {'recetas': recetas})
 
-def recetaDetalles(request):
-    return render(request, "receta/viewRecetasInfo.html")
+def recetaDetalles(request, id):
+    receta = Receta.objects.get(id=id)
+    return render(request, "receta/viewRecetasInfo.html", {'receta': receta})
 
 def registrarReceta(request):
     if request.method == 'POST':
