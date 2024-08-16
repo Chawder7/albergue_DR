@@ -1,94 +1,72 @@
 {% extends "home/base.html" %}
-{% block titulo %}Recetas{% endblock  %}
+{% block titulo %}Recetas{% endblock %}
 
 {% block contenido %}
-<div class="text-center" style= "padding:10px">
-    <h1>Pacientes </h1>
+<div class="text-center" style="padding:10px">
+    <h1>Recetas</h1>
 </div>
-<container class="container-table">
+<div class="container-table">
     <div class="container-button">
         <div class="box">
-    <input type="search">
-    <button  type="button">Buscar</button>
+            <input type="search">
+            <button type="button">Buscar</button>
         </div>
     </div>
-    <div class= "container-table">
-<table class="table table-bordered border-purple text-center align-middle">
-    <thead class= "table-purple">
-        <tr class="text-white">
-            <th>Clave</th>
-            <th>Paciente</th>
-            <th>Medicamento</th>
-            <th>Doctor</th>
-            <th>Fecha</th>
-            <th>Cantidad</th>
-            <th>Diagnostico</th>
-            <th>Detalles</th>
-        </tr>
-    </thead>
-    <tboody>
-        <tr>
-            <td>01</td>
-            <td>Hugo</td>
-            <td>Omeprazol</td>
-            <td>Raul</td>
-            <td>July 06, 2024</td>
-            <td>1</td>
-            <td>{% lorem 1 w random %}</td>
-            <td><a href="{% url "infoReceta" %}"><i class = "bi bi-eye"></i></a></td>
-        </tr>
-        <tr>
-            <td>01</td>
-            <td>Hugo</td>
-            <td>Omeprazol</td>
-            <td>Raul</td>
-            <td>July 06, 2024</td>
-            <td>1</td>
-            <td>{% lorem 1 w random %}</td>
-            <td><i class = "bi bi-eye"></i></td>
-        </tr>
-        <tr>
-            <td>01</td>
-            <td>Hugo</td>
-            <td>Omeprazol</td>
-            <td>Raul</td>
-            <td>July 06, 2024</td>
-            <td>1</td>
-            <td>{% lorem 1 w random %}</td>
-            <td><i class = "bi bi-eye"></i></td>
-        </tr>
-        <tr>
-            <td>01</td>
-            <td>Hugo</td>
-            <td>Omeprazol</td>
-            <td>Raul</td>
-            <td>July 06, 2024</td>
-            <td>1</td>
-            <td>{% lorem 1 w random %}</td>
-            <td><i class = "bi bi-eye"></i></td>
-        </tr>
-        <tr>
-            <td>01</td>
-            <td>Hugo</td>
-            <td>Omeprazol</td>
-            <td>Raul</td>
-            <td>July 06, 2024</td>
-            <td>1</td>
-            <td>{% lorem 1 w random %}</td>
-            <td><i class = "bi bi-eye"></i></td>
-        </tr>
-        <tr>
-            <td>01</td>
-            <td>Hugo</td>
-            <td>Omeprazol</td>
-            <td>Raul</td>
-            <td>July 06, 2024</td>
-            <td>1</td>
-            <td>{% lorem 1 w random %}</td>
-            <td><i class = "bi bi-eye"></i></td>
-        </tr>
-    </tboody>
-</table>
+    <div class="container-table">
+        <table class="table table-bordered border-purple text-center align-middle">
+            <thead class="table-purple">
+                <tr class="text-white">
+                    <th>Clave</th>
+                    <th>Paciente</th>
+                    <th>Medicamento</th>
+                    <th>Doctor</th>
+                    <th>Fecha</th>
+                    <th>Cantidad</th>
+                    <th>Diagnóstico</th>
+                    <th>Detalles</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for receta in recetas %}
+                <tr>
+                    <td>{{ receta.id }}</td>
+                    <td>{{ receta.paciente }}</td>
+                    <td>{{ receta.medicamento }}</td>
+                    <td>{{ receta.doctor }}</td>
+                    <td>{{ receta.created }}</td>
+                    <td>{{ receta.cantidad }}</td>
+                    <td>{{ receta.diagnostico }}</td>
+                    <td><a href="{% url 'infoReceta' receta.id %}"><i class="bi bi-eye"></i></a></td>
+                    <td>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal{{ receta.id }}">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+
+                <!-- Modal de confirmación -->
+                <div class="modal fade" id="deleteModal{{ receta.id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ receta.id }}" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteModalLabel{{ receta.id }}">Eliminar Receta</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <h4>¡Atención!</h4>
+                                <p>¿Está seguro que deseas <strong>eliminar</strong> la receta numero {{receta.id}}?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="{% url 'DeleteReceta' receta.id %}" class="btn btn-danger">Sí</a>
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
-</container>
-{% endblock  %}
+{% endblock %}

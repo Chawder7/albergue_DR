@@ -1,40 +1,48 @@
 {% extends "home/base.html" %}
-{% block titulo %}Agregar Medicamento{% endblock titulo %} 
+{% block titulo %}
+    {{ medicamento.id|yesno:"Actualizar Medicamento,Agregar Medicamento" }}
+{% endblock titulo %} 
 {% block contenido %}
 <section class="sectionForm">
     <div class="form-container">
-        <h2>Agregar medicamento</h2>
-        <form action="{%url 'RegistrarMed'%}" method="POST" role="form" enctype="multipart/form-data">
+        <h2>{{ medicamento.id|yesno:"Actualizar Medicamento,Agregar Medicamento" }}</h2>
+        <form method="POST" role="form" enctype="multipart/form-data" 
+            action=" {% if medicamento.id %}{% url 'ActualizarMed' medicamento.id %}
+            {% else %}{% url 'RegistrarMed' %}{% endif %}">
+            
             {% csrf_token %}
             <div class="container1">
                 <div class="form-group">
                     <label>Nombre medicamento</label>
-                    <input type="text" name="nombreMed" required placeholder = "Nombre">
+                    <input type="text" name="nombreMed" value="{{ medicamento.nombreMed }}" required placeholder="Nombre">
                 </div>
                 <div class="form-group">
                     <label>Categoría</label>
-                    <input type="text" name="categoria" required placeholder = "Categoría">
+                    <input type="text" name="categoria" value="{{ medicamento.categoria }}" required placeholder="Categoría">
                 </div>
                 <div class="form-group">
                     <label>Cantidad</label>
-                    <input type="number" name="cantidad" min="1" step="1" required placeholder = "Cantidad">
+                    <input type="number" name="cantidad" value="{{ medicamento.cantidad }}" min="1" step="1" required placeholder="Cantidad">
                 </div>
                 <div class="form-group">
                     <label>Fecha de Vencimiento</label>
-                    <input type="date" name="fechaVen" required>
+                    <input type="date" name="fechaVen" value="{{ medicamento.fechaVen }}" required>
                 </div>
             </div>
             <div class="form-group">
                 <label>Descripción</label>
-                <textarea name="descripcion" rows="4" placeholder = "Descripción..."></textarea>
+                <textarea name="descripcion" rows="4" placeholder="Descripción...">{{ medicamento.descripcion }}</textarea>
             </div>
             <div class="form-group">
                 <label>Imagen</label>
-                <input type="file" name="fotoMed" />
+                <input type="file" name="fotoMed">
+                {% if medicamento.fotoMed %}
+                    <p>Imagen actual: <a href="{{ medicamento.fotoMed.url }}">Ver imagen</a></p>
+                {% endif %}
             </div>
             <div class="form-button">
-                <input type="submit" class="btn btn-primary" value = "Aceptar">
-                <a href = "{%url 'Medicamentos'%}" class="btn btn-secondary"> Cancelar</a>
+                <input type="submit" class="btn btn-primary" value="Aceptar">
+                <a href="{% url 'Medicamentos' %}" class="btn btn-secondary">Cancelar</a>
             </div>
         </form>
     </div>
