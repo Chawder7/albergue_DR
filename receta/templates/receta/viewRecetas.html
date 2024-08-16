@@ -5,7 +5,7 @@
 <div class="text-center" style= "padding:10px">
     <h1>Recetas</h1>
 </div>
-<div class="container-table">
+<container class="container-table">
     <div class="container-button">
         <div class="box">
             <form method="GET" action="{% url 'Recetas' %}">
@@ -13,7 +13,7 @@
                 <button  type="submit" class="button-search">Buscar</button>
             </form>
         </div>
-        <button class="button-add">Agregar</button>
+        <button class="button-add" onclick="location.href='{%url 'RegistrarReceta'%}'">Agregar</button>
     </div>
     <div class= "container-table">
 <table class="table table-bordered border-purple text-center align-middle">
