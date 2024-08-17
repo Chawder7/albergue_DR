@@ -30,18 +30,27 @@
                 <h3>  Albergue Divino Redentor</h3>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="{% url 'Medicamentos' %}">Farmacia</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="{% url 'Pacientes' %}">Pacientes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="{% url 'Recetas' %}">Recetas</a>
-                        </li>
+                        {% if usuario.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{% url 'Medicamentos' %}">Farmacia</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{% url 'Pacientes' %}">Pacientes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{% url 'Recetas' %}">Recetas</a>
+                            </li>
+                        {% endif %}
+                        {% if not usuario.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link text-white" href="{% url "admin:login" %}">LOGIN</a>
                         </li>
+                        {% endif %}
+                        {% if usuario.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{% url "admin:logout" %}">LOGOUT</a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

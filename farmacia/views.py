@@ -3,7 +3,6 @@ from .forms import MedicamentoForm
 from .models import Medicamentos
 from django.contrib import messages
 
-
 # Crear la vista para agregar un medicamento
 def altaMedicamento(request):
     return render(request, "farmacia/formFarmacia.html")
@@ -17,6 +16,9 @@ def registrarMedicamento(request):
             return redirect('Medicamentos')
         else:
             messages.error(request, "Error al procesar el formulario")
+    else:
+        formMed = MedicamentoForm()
+        
     return render(request, "farmacia/formFarmacia.html", {'form': formMed})
 
 # Crear la vista para listar todos los medicamentos
