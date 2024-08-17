@@ -7,8 +7,7 @@
     <div class="form-container">
         <h2>{{ medicamento.id|yesno:"Actualizar Medicamento,Agregar Medicamento" }}</h2>
         <form method="POST" role="form" enctype="multipart/form-data" 
-            action=" {% if medicamento.id %}{% url 'ActualizarMed' medicamento.id %}
-            {% else %}{% url 'RegistrarMed' %}{% endif %}">
+            action="{% if medicamento.id %}{% url 'ActualizarMed' medicamento.id %}{% else %}{% url 'RegistrarMed' %}{% endif %}">
             
             {% csrf_token %}
             <div class="container1">
@@ -35,7 +34,7 @@
             </div>
             <div class="form-group">
                 <label>Imagen</label>
-                <input type="file" name="fotoMed">
+                <input type="file" name="fotoMed" accept=".jpg, .jpeg, .png">
                 {% if medicamento.fotoMed %}
                     <p>Imagen actual: <a href="{{ medicamento.fotoMed.url }}">Ver imagen</a></p>
                 {% endif %}
@@ -47,4 +46,18 @@
         </form>
     </div>
 </section>
+
+<script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+        const fileInput = document.querySelector('input[type="file"]');
+        const file = fileInput.files[0];
+        const allowedTypes = ['image/jpeg', 'image/png'];
+
+        if (file && !allowedTypes.includes(file.type)) {
+            event.preventDefault();
+            alert('Solo se permiten archivos JPG o PNG.');
+        }
+    });
+</script>
+
 {% endblock contenido %}
