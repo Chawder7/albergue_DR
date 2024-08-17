@@ -2,6 +2,8 @@ from django.shortcuts import render
 from .models import Paciente
 from .models import Medicamentos
 from django.contrib.auth.models import User
+from django.db.models import Q
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from receta.models import Receta
 from .forms import RecetaForm
 from django.shortcuts import get_object_or_404
@@ -10,8 +12,25 @@ from django.shortcuts import get_object_or_404
 # Create your views here.
 
 def viewReceta(request):
+    query = request.GET.get('busqueda','')
     recetas = Receta.objects.all()
-    return render(request,"receta/viewRecetas.html", {'recetas': recetas})
+
+    if query:
+        recetas = recetas.filter(
+            Q(paciente__nombrePaciente__icontains=query) | 
+            Q(doctor__username__icontains=query)
+        )
+
+    paginacion = Paginator(recetas,8)
+    pagina = request.GET.get('page')
+    try:
+        recetas = paginacion.page(pagina)
+    except PageNotAnInteger:
+        recetas = paginacion.page(1)
+    except EmptyPage:
+        recetas = paginacion.page(paginacion.num_pages)
+
+    return render(request,"receta/viewRecetas.html",{'recetas':recetas, 'query':query})
 
 def recetaDetalles(request, id):
     receta = Receta.objects.get(id=id)
@@ -38,4 +57,5 @@ def registrarReceta(request):
     medicamentos = Medicamentos.objects.all()
     usuarios = User.objects.all()
     return render(request, 'receta/recetaForm.html', {'form': form, 'pacientes': pacientes, 'medicamentos': medicamentos, 'usuarios': usuarios})
+    
 
