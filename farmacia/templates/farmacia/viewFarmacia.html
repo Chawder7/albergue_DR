@@ -8,9 +8,12 @@
 <div class="container-table">
     <div class="container-button">
         <div class="box">
-            <input type="search">
-            <button type="button">Buscar</button>
+            <form method="GET" action="{% url 'Recetas' %}">
+                <input type="search" name="busqueda" value="{{query}}" placeholder="Buscar">
+                <button  type="submit" class="button-search">Buscar</button>
+            </form>
         </div>
+        <button class="button-add" onclick="location.href='{%url 'AltaMed'%}'">Agregar</button>
     </div>
 <div class= "container-table">
 <table class="table table-bordered border-purple text-center align-middle">
