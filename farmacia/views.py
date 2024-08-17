@@ -4,6 +4,17 @@ from .models import Medicamentos
 from django.contrib import messages
 
 
+# Crear la vista para listar todos los medicamentos
+def allMedicamentos(request):
+    medicamentos = Medicamentos.objects.all().only("id", "nombreMed", "descripcion", "categoria", "cantidad", "fechaVen")
+    lowMeds = Medicamentos.objects.filter(cantidad__lte=20)
+    consulta = {
+        "medicamentos": medicamentos,
+        "lowMeds": lowMeds
+    }
+    return render(request, "farmacia/viewFarmacia.html", consulta)
+
+
 # Crear la vista para agregar un medicamento
 def altaMedicamento(request):
     return render(request, "farmacia/formFarmacia.html")
@@ -19,15 +30,6 @@ def registrarMedicamento(request):
             messages.error(request, "Error al procesar el formulario")
     return render(request, "farmacia/formFarmacia.html", {'form': formMed})
 
-# Crear la vista para listar todos los medicamentos
-def allMedicamentos(request):
-    medicamentos = Medicamentos.objects.all().only("id", "nombreMed", "descripcion", "categoria", "cantidad", "fechaVen")
-    lowMeds = Medicamentos.objects.filter(cantidad__lte=20)
-    consulta = {
-        "medicamentos": medicamentos,
-        "lowMeds": lowMeds
-    }
-    return render(request, "farmacia/viewFarmacia.html", consulta)
 
 # Crear la vista para consultar un medicamento individual
 def consultarMedicamentoIndividual(request, id):

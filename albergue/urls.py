@@ -9,24 +9,25 @@ from receta import views as receta_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_views.index, name='Index'),
-
+    #Url de farmacia
     path('farmacia/', farmacia_views.allMedicamentos, name="Medicamentos"),
     path('altamedicamento/', farmacia_views.altaMedicamento, name = "AltaMed"),
     path('registrar/', farmacia_views.registrarMedicamento, name = "RegistrarMed"),
+    path('editarMedicamento/<int:id>/', farmacia_views.editarMedicamento, name="ActualizarMed"),
+    path('consultarMedicamento/<int:id>/', farmacia_views.consultarMedicamentoIndividual, name="GetMedicamento"),
+    #url de recetas
     path('recetas/',receta_views.viewReceta,name="Recetas"),
     path('registroreceta/', receta_views.registrarReceta, name = "RegistrarReceta"),
-     path('recetaInfo/<int:id>/',receta_views.recetaDetalles,name="infoReceta"),
-    path('editarMedicamento/<int:id>/', farmacia_views.editarMedicamento, name="ActualizarMed"),
-     path('consultarMedicamento/<int:id>/', farmacia_views.consultarMedicamentoIndividual, name="GetMedicamento"),
-     path('eliminarReceta/<int:id>/',receta_views.eliminarReceta,name="DeleteReceta"),
-    #
-    path('pacienteInfo/<int:id>',paciente_views.pacienteDetalles,name="infoPaciente"),
+    path('recetaInfo/<int:id>/',receta_views.recetaDetalles,name="infoReceta"),
+    path('eliminarReceta/<int:id>/',receta_views.eliminarReceta,name="DeleteReceta"),
+    #url de pacientes
     path('pacientes/', paciente_views.pacientes, name = "Pacientes"),
     path('registrarpaciente/', paciente_views.registrarPaciente, name = "RegistrarPac"),
+    path('pacienteInfo/<int:id>',paciente_views.pacienteDetalles,name="infoPaciente"),
     path('editarPaciente/<int:id>',paciente_views.editarPaciente,name="Editar"), 
     path('actualizarPaciente/<int:id>', paciente_views.actualizarPaciente, name = "Actualizar"),
     path('eliminarPaciente/<int:id>',paciente_views.eliminarPaciente ,name="Eliminar"),
-   path('altapaciente/', paciente_views.formPaciente, name="AltaPac"),
+    path('altapaciente/', paciente_views.formPaciente, name="AltaPac"),
     #
 ]
 
