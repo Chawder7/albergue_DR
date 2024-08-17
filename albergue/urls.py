@@ -11,21 +11,20 @@ urlpatterns = [
     path('', home_views.index, name='Index'),
 
     path('farmacia/', farmacia_views.allMedicamentos, name="Medicamentos"),
-<<<<<<< HEAD
+
     path('altamedicamento/', farmacia_views.altaMedicamento, name = "AltaMed"),
     path('registrar/', farmacia_views.registrarMedicamento, name = "RegistrarMed"),
     path('recetas/',receta_views.viewReceta,name="Recetas"),
     path('registroreceta/', receta_views.registrarReceta, name = "RegistrarReceta"),
     path('recetaInfo/',receta_views.recetaDetalles,name="infoReceta"),
-    #
+    
     path('pacienteInfo/<int:id>',paciente_views.pacienteDetalles,name="infoPaciente"),
     path('pacientes/', paciente_views.pacientes, name = "Pacientes"),
     path('registrarpaciente/', paciente_views.registrarPaciente, name = "RegistrarPac"),
     path('editarPaciente/<int:id>',paciente_views.editarPaciente,name="Editar"), 
     path('actualizarPaciente/<int:id>', paciente_views.actualizarPaciente, name = "Actualizar"),
     path('eliminarPaciente/<int:id>',paciente_views.eliminarPaciente ,name="Eliminar"),
-    #
-=======
+
     path('altamedicamento/', farmacia_views.altaMedicamento, name="AltaMed"),
     path('registrar/', farmacia_views.registrarMedicamento, name="RegistrarMed"),
     path('editarMedicamento/<int:id>/', farmacia_views.editarMedicamento, name="ActualizarMed"),  # Corregido
@@ -33,7 +32,7 @@ urlpatterns = [
     
 
     path('pacientes/', paciente_views.pacientes, name="Pacientes"),
-    path('pacienteInfo/',paciente_views.pacienteDetalles,name="infoPaciente"),
+    path('pacienteInfo/<int:id>/',paciente_views.pacienteDetalles,name="infoPaciente"),
     path('registrarpaciente/', paciente_views.registrarPaciente, name="RegistrarPac"),
     path('altapaciente/', paciente_views.formPaciente, name="AltaPac"),
 
@@ -41,7 +40,7 @@ urlpatterns = [
     path('recetaInfo/<int:id>/',receta_views.recetaDetalles,name="infoReceta"),
     path('eliminarReceta/<int:id>/',receta_views.eliminarReceta,name="DeleteReceta"),
     path('registroreceta/', receta_views.registrarReceta, name="RegistrarReceta"),
->>>>>>> UDV-medicamento-y-receta
+
 ]
 
 if settings.DEBUG:

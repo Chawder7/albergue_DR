@@ -29,8 +29,20 @@ def registrarReceta(request):
     if request.method == 'POST':
         form = RecetaForm(request.POST)
         if form.is_valid():
-            form.save()
-            return render(request, 'receta/recetaForm.html')
+            receta = form.save(commit=False)
+
+            medicamento = get_object_or_404(Medicamentos, id = receta.medicamento.id)
+            
+            if receta.cantidad <= medicamento.cantidad:
+                medicamento.cantidad -= receta.cantidad
+                medicamento.save()
+
+                receta.save()
+                return render(request, 'receta/recetaForm.html')
+        else:
+            error = "No hay suficiente cantidad del medicamento disponible"
+            return render(request, 'receta/recetaForm.html', {'form': form, 'error':error})
+        
     else:
         form = RecetaForm()
 
