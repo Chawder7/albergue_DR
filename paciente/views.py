@@ -99,8 +99,5 @@ def actualizarPaciente(request, id):
         return render(request, "paciente/viewPaciente.html",{'pacientes':pacientes, 'query':query})
     return render(request, "paciente/editarPaciente.html", {'paciente':aPaciente})
 
-
-
-# 
 def formPaciente(request):
     return render(request, "paciente/formPaciente.html")

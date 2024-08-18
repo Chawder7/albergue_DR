@@ -5,6 +5,25 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 @login_required
+# Crear la vista para agregar un medicamento
+def altaMedicamento(request):
+    return render(request, "farmacia/formFarmacia.html")
+
+# Crear la vista para registrar un medicamento
+def registrarMedicamento(request):
+    if request.method == 'POST':
+        formMed = MedicamentoForm(request.POST, request.FILES)
+        if formMed.is_valid():
+            formMed.save()
+            return redirect('Medicamentos')
+        else:
+            messages.error(request, "Error al procesar el formulario")
+    else:
+        formMed = MedicamentoForm()
+        
+    return render(request, "farmacia/formFarmacia.html", {'form': formMed})
+
+# Crear la vista para listar todos los medicamentos
 def allMedicamentos(request):
     medicamentos = Medicamentos.objects.all().only("id", "nombreMed", "descripcion", "categoria", "cantidad", "fechaVen")
     lowMeds = Medicamentos.objects.filter(cantidad__lte=20)
