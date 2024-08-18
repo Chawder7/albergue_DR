@@ -30,11 +30,11 @@
             </div>
             <div class="form-group">
                 <label>Descripción</label>
-                <textarea name="descripcion" rows="4" placeholder="Descripción..." required>{{ medicamento.descripcion }}</textarea>
+                <textarea name="descripcion" rows="4" placeholder="Descripción...">{{ medicamento.descripcion }}</textarea>
             </div>
             <div class="form-group">
                 <label>Imagen</label>
-                <input value="{{medicamento.fotoMed}}" type="file" name="fotoMed" accept=".jpg, .jpeg, .png" required>
+                <input type="file" name="fotoMed" accept=".jpg, .jpeg, .png" {% if not medicamento.fotoMed %} required{% endif %}>
                 {% if medicamento.fotoMed %}
                     <p>Imagen actual: <a href="{{ medicamento.fotoMed.url }}">Ver imagen</a></p>
                 {% endif %}
@@ -46,18 +46,4 @@
         </form>
     </div>
 </section>
-
-<script>
-    document.querySelector('form').addEventListener('submit', function(event) {
-        const fileInput = document.querySelector('input[type="file"]');
-        const file = fileInput.files[0];
-        const allowedTypes = ['image/jpeg', 'image/png'];
-
-        if (file && !allowedTypes.includes(file.type)) {
-            event.preventDefault();
-            alert('Solo se permiten archivos JPG o PNG.');
-        }
-    });
-</script>
-
 {% endblock contenido %}

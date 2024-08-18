@@ -61,14 +61,17 @@ def editarMedicamento(request, id):
             cantidad = request.POST['cantidad']
             fechaVen = request.POST['fechaVen']
             descripcion = request.POST['descripcion']
-            fotoMed = request.FILES['fotoMed']
 
+            if 'fotoMed' in request.FILES:
+                medicamento.fotoMed = request.FILES['fotoMed']
+            else:
+                medicamento.fotoMed = medicamento.fotoMed
             medicamento.nombreMed = nombreMed
             medicamento.categoria = categoria
             medicamento.cantidad = cantidad
             medicamento.fechaVen = fechaVen
             medicamento.descripcion = descripcion
-            medicamento.fotoMed = fotoMed
+
             medicamento.save()
             return redirect('Medicamentos')
         else:
