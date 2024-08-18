@@ -3,10 +3,10 @@ from .models import Paciente
 from .models import Medicamentos
 from django.contrib.auth.models import User
 from django.db.models import Q
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from receta.models import Receta
 from .forms import RecetaForm
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
+from utils import utils 
 
 
 # Create your views here.
@@ -20,49 +20,34 @@ def viewReceta(request):
             Q(paciente__nombrePaciente__icontains=query) | 
             Q(doctor__username__icontains=query)
         )
-
-    paginacion = Paginator(recetas,8)
-    pagina = request.GET.get('page')
-    try:
-        recetas = paginacion.page(pagina)
-    except PageNotAnInteger:
-        recetas = paginacion.page(1)
-    except EmptyPage:
-        recetas = paginacion.page(paginacion.num_pages)
-
-    return render(request,"receta/viewRecetas.html",{'recetas':recetas, 'query':query})
+    paginacion = utils.paginar(recetas, request)
+    return render(request,"receta/viewRecetas.html",{'recetas':paginacion, 'query':query})
 
 def recetaDetalles(request, id):
     receta = Receta.objects.get(id=id)
     return render(request, "receta/viewRecetasInfo.html", {'receta': receta})
 
-def eliminarReceta(request, id):
+def eliminarReceta(id):
     receta = get_object_or_404(Receta, id=id)
     receta.delete()
-    recetas = Receta.objects.all()
-    return render(request, 'receta/viewRecetas.html', {'recetas': recetas})   
+    return redirect('Recetas')  
 
 def registrarReceta(request):
     if request.method == 'POST':
         form = RecetaForm(request.POST)
         if form.is_valid():
             receta = form.save(commit=False)
-
-            medicamento = get_object_or_404(Medicamentos, id = receta.medicamento.id)
-            
+            medicamento = get_object_or_404(Medicamentos, id = receta.medicamento.id)        
             if receta.cantidad <= medicamento.cantidad:
                 medicamento.cantidad -= receta.cantidad
                 medicamento.save()
-
                 receta.save()
-                return render(request, 'receta/recetaForm.html')
+                return redirect('Recetas')
         else:
             error = "No hay suficiente cantidad del medicamento disponible"
             return render(request, 'receta/recetaForm.html', {'form': form, 'error':error})
-        
     else:
         form = RecetaForm()
-
     pacientes = Paciente.objects.all()
     medicamentos = Medicamentos.objects.all()
     usuarios = User.objects.all()
@@ -80,6 +65,5 @@ def actualizarReceta(request, id):
     form = RecetaForm(request.POST, request.FILES, instance = aReceta)
     if form.is_valid():
         form.save()
-        recetas = Receta.objects.all()
-        return render(request,"receta/viewRecetas.html",{'recetas':recetas})
+        return redirect('Recetas')
     return render(request, "paciente/editarPaciente.html", {'receta':aReceta})

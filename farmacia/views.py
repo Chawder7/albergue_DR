@@ -3,34 +3,25 @@ from .forms import MedicamentoForm
 from .models import Medicamentos
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
+from utils import utils
 
 @login_required
 # Crear la vista para listar todos los medicamentos
 def allMedicamentos(request):
     query = request.GET.get('busqueda','')
     medicamentos = Medicamentos.objects.all().only("id", "nombreMed", "descripcion", "categoria", "cantidad", "fechaVen")
-    
     lowMeds = Medicamentos.objects.filter(cantidad__lte=20)
     consulta = {
         "lowMeds": lowMeds
     }
-    
     if query:
         medicamentos = medicamentos.filter(
             Q(nombreMed__icontains=query) 
         )
-    paginacion = Paginator(medicamentos,5)
-    pagina = request.GET.get('page')
-    try:
-        medicamentos = paginacion.page(pagina)
-    except PageNotAnInteger:
-        medicamentos = paginacion.page(1)
-    except EmptyPage:
-        medicamentos = paginacion.page(paginacion.num_pages)
+    paginacion = utils.paginar(medicamentos, request, items_per_page=5)
     
-    return render(request, "farmacia/viewFarmacia.html", {'consulta':consulta, 'query':query, 'medicamentos':medicamentos})
+    return render(request, "farmacia/viewFarmacia.html", {'consulta':consulta, 'query':query, 'medicamentos':paginacion})
 
 # Crear la vista para agregar un medicamento
 def altaMedicamento(request):
@@ -48,7 +39,8 @@ def registrarMedicamento(request):
             fotoMed = request.FILES['fotoMed']
             insert = Medicamentos(nombreMed = nombreMed, categoria = categoria, cantidad = cantidad, fechaVen = fechaVen, descripcion = descripcion, fotoMed = fotoMed)
             insert.save()
-            return render(request, "farmacia/formFarmacia.html")
+            messages.success(request, "Medicamento registrado con éxito")
+            return redirect('Medicamentos')
         else:
             messages.error(request, "Error al procesar el formulario")
     else: 
@@ -85,9 +77,7 @@ def editarMedicamento(request, id):
         form = MedicamentoForm(instance=medicamento)
     return render(request, "farmacia/formFarmacia.html", {"form": form, "medicamento": medicamento})
 
-def eliminarMed(request, id):
+def eliminarMed(id):
     medicamento = get_object_or_404(Medicamentos, id=id)
-    
     medicamento.delete()
-    medicamentos = Medicamentos.objects.all()
-    return render(request, 'farmacia/viewFarmacia.html', {'medicamentos': medicamentos})
+    return redirect('Medicamentos')
