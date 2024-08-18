@@ -12,7 +12,7 @@ def pacientes(request):
     lista_pacientes =  Paciente.objects.annotate(num_recetas=Count('receta')).only("id","nombrePaciente","apellidoPaciente","edad","genero")
 
     if query:
-        pacientes = pacientes.filter(
+        lista_pacientes = lista_pacientes.filter(
             Q(nombrePaciente__icontains=query) | 
             Q(apellidoPaciente__icontains=query)
         )
@@ -20,13 +20,13 @@ def pacientes(request):
     paginacion = Paginator(lista_pacientes,8)
     pagina = request.GET.get('page')
     try:
-        pacientes = paginacion.page(pagina)
+        lista_pacientes = paginacion.page(pagina)
     except PageNotAnInteger:
-        pacientes = paginacion.page(1)
+        lista_pacientes = paginacion.page(1)
     except EmptyPage:
-        pacientes = paginacion.page(paginacion.num_pages)
+        lista_pacientes = paginacion.page(paginacion.num_pages)
 
-    return render(request, "paciente/viewPaciente.html",{'pacientes':pacientes, 'query':query})
+    return render(request, "paciente/viewPaciente.html",{'pacientes':lista_pacientes, 'query':query})
 
 def pacienteDetalles(request, id):
     paciente = Paciente.objects.get(id=id)
