@@ -61,14 +61,17 @@ def editarMedicamento(request, id):
             cantidad = request.POST['cantidad']
             fechaVen = request.POST['fechaVen']
             descripcion = request.POST['descripcion']
-            fotoMed = request.FILES['fotoMed']
 
+            if 'fotoMed' in request.FILES:
+                medicamento.fotoMed = request.FILES['fotoMed']
+            else:
+                medicamento.fotoMed = medicamento.fotoMed
             medicamento.nombreMed = nombreMed
             medicamento.categoria = categoria
             medicamento.cantidad = cantidad
             medicamento.fechaVen = fechaVen
             medicamento.descripcion = descripcion
-            medicamento.fotoMed = fotoMed
+
             medicamento.save()
             return redirect('Medicamentos')
         else:
@@ -77,7 +80,7 @@ def editarMedicamento(request, id):
         form = MedicamentoForm(instance=medicamento)
     return render(request, "farmacia/formFarmacia.html", {"form": form, "medicamento": medicamento})
 
-def eliminarMed(request,id):
+def eliminarMed(request, id):
     medicamento = get_object_or_404(Medicamentos, id=id)
     medicamento.delete()
     return redirect('Medicamentos')

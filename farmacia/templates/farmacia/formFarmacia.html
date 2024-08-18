@@ -30,11 +30,11 @@
             </div>
             <div class="form-group">
                 <label>Descripción</label>
-                <textarea name="descripcion" rows="4" placeholder="Descripción..." required>{{ medicamento.descripcion }}</textarea>
+                <textarea name="descripcion" rows="4" placeholder="Descripción...">{{ medicamento.descripcion }}</textarea>
             </div>
             <div class="form-group">
                 <label>Imagen</label>
-                <input value="{{medicamento.fotoMed}}" type="file" name="fotoMed" accept=".jpg, .jpeg, .png" required>
+                <input type="file" name="fotoMed" accept=".jpg, .jpeg, .png" {% if not medicamento.fotoMed %} required{% endif %}>
                 {% if medicamento.fotoMed %}
                     <p>Imagen actual: <a href="{{ medicamento.fotoMed.url }}">Ver imagen</a></p>
                 {% endif %}
