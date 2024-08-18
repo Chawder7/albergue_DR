@@ -70,7 +70,10 @@ def registrarReceta(request):
     
 def editarReceta(request, id):
     receta = Receta.objects.get(id=id)
-    return render(request, "receta/editarReceta.html",{'receta':receta})
+    pacientes = Paciente.objects.all()
+    medicamentos = Medicamentos.objects.all()
+    usuarios = User.objects.all()
+    return render(request, "receta/editarReceta.html",{'receta':receta, 'pacientes': pacientes, 'medicamentos': medicamentos, 'usuarios': usuarios})
 
 def actualizarReceta(request, id):
     aReceta = get_object_or_404(Receta, id=id)
@@ -79,7 +82,4 @@ def actualizarReceta(request, id):
         form.save()
         recetas = Receta.objects.all()
         return render(request,"receta/viewRecetas.html",{'recetas':recetas})
-    pacientes = Paciente.objects.all()
-    medicamentos = Medicamentos.objects.all()
-    usuarios = User.objects.all()
-    return render(request, "paciente/editarPaciente.html", {'receta':aReceta, 'pacientes': pacientes, 'medicamentos': medicamentos, 'usuarios': usuarios})
+    return render(request, "paciente/editarPaciente.html", {'receta':aReceta})

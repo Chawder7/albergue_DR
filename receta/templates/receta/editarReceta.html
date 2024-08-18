@@ -10,27 +10,24 @@
                 <div class="form-group">
                     <label>Nombre del Paciente</label>
                     <select name = "paciente" required>
-                        <option value="" disabled selected>{{receta.paciente.nombrePaciente}} {{receta.paciente.apellidoPaciente}}</option>
                         {% for paciente in pacientes %}
-                            <option value = "{{paciente.id}}">{{paciente.nombrePaciente}} {{paciente.apellidoPaciente}}</option>
+                            <option value = "{{paciente.id}}" {% if paciente.id == receta.paciente.id %}selected{% endif %}>{{paciente.nombrePaciente}} {{paciente.apellidoPaciente}}</option>
                         {%endfor%}
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Medicamento</label>
                     <select name = "medicamento" required>
-                        <option value="" disabled selected>{{receta.medicamento}}</option>
                         {% for medicamento in medicamentos %}
-                            <option value = "{{medicamento.id}}">{{medicamento.nombreMed}}</option>
+                            <option value = "{{medicamento.id}}" {% if medicamento.id == receta.medicamento.id %}selected{% endif %}>{{medicamento.nombreMed}}</option>
                         {%endfor%}
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Doctor</label>
                     <select name = "doctor" required>
-                        <option value="" disabled selected>{{receta.doctor}}</option>
                         {% for usuario in usuarios %}
-                            <option value = "{{usuario.id}}">{{usuario}}</option>
+                            <option value = "{{usuario.id}}" {% if usuario.id == receta.doctor.id %}selected{% endif %}>{{usuario}}</option>
                         {%endfor%}
                     </select>
                 </div>

@@ -12,7 +12,6 @@ def allMedicamentos(request):
     query = request.GET.get('busqueda','')
     medicamentos = Medicamentos.objects.all().only("id", "nombreMed", "descripcion", "categoria", "cantidad", "fechaVen")
     
-    
     lowMeds = Medicamentos.objects.filter(cantidad__lte=20)
     consulta = {
         "lowMeds": lowMeds
@@ -22,7 +21,6 @@ def allMedicamentos(request):
         medicamentos = medicamentos.filter(
             Q(nombreMed__icontains=query) 
         )
-    
     paginacion = Paginator(medicamentos,5)
     pagina = request.GET.get('page')
     try:
@@ -37,20 +35,6 @@ def allMedicamentos(request):
 # Crear la vista para agregar un medicamento
 def altaMedicamento(request):
     return render(request, "farmacia/formFarmacia.html")
-
-# Crear la vista para registrar un medicamento
-def registrarMedicamento(request):
-    if request.method == 'POST':
-        formMed = MedicamentoForm(request.POST, request.FILES)
-        if formMed.is_valid():
-            formMed.save()
-            return redirect('Medicamentos')
-        else:
-            messages.error(request, "Error al procesar el formulario")
-    else:
-        formMed = MedicamentoForm()
-        
-    return render(request, "farmacia/formFarmacia.html", {'form': formMed})
 
 def registrarMedicamento(request):
     if request.method == 'POST':
@@ -100,8 +84,6 @@ def editarMedicamento(request, id):
     else:
         form = MedicamentoForm(instance=medicamento)
     return render(request, "farmacia/formFarmacia.html", {"form": form, "medicamento": medicamento})
-
-
 
 def eliminarMed(request, id):
     medicamento = get_object_or_404(Medicamentos, id=id)
