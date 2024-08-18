@@ -20,14 +20,14 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-1">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a href="{% url 'Index' %}">
-                            <img src="{%static 'home/images/logo.jpeg'%}" style="width: 60px; height: 60px; border-radius: 50%;">  
-                        </a>
-                    </li>
-                </ul>
-                <h3 style="margin-left: 10px;">  Albergue Divino Redentor</h3>
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a href="{% url 'Index' %}">
+                                <img src="{%static 'home/images/logo2.jpeg'%}" style="width: 60px; height: 60px; border-radius: 50%;">  
+                            </a>
+                        </li>
+                    </ul>
+                <h4 style="margin-left: 10px; color: white;">  Albergue Divino Redentor</h4>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         {% if user.is_authenticated %}
