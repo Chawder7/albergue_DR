@@ -19,7 +19,8 @@ def viewReceta(request):
     if query:
         recetas = recetas.filter(
             Q(paciente__nombrePaciente__icontains=query) | 
-            Q(doctor__username__icontains=query)
+            Q(doctor__username__icontains=query) |
+            Q(id__icontains=query)
         )
     paginacion = utils.paginar(recetas, request)
     return render(request,"receta/viewRecetas.html",{'recetas':paginacion, 'query':query})
@@ -63,9 +64,17 @@ def editarReceta(request, id):
     return render(request, "receta/editarReceta.html",{'receta':receta, 'pacientes': pacientes, 'medicamentos': medicamentos, 'usuarios': usuarios})
 
 def actualizarReceta(request, id):
-    aReceta = get_object_or_404(Receta, id=id)
-    form = RecetaForm(request.POST, request.FILES, instance = aReceta)
+    receta = get_object_or_404(Receta, id=id)
+    form = RecetaForm(request.POST, request.FILES, instance = receta)
     if form.is_valid():
-        form.save()
-        return redirect('Recetas')
-    return render(request, "paciente/editarPaciente.html", {'receta':aReceta})
+        medicamento = get_object_or_404(Medicamentos, id = receta.medicamento.id)
+        if receta.cantidad <= medicamento.cantidad:
+            medicamento.cantidad -= receta.cantidad
+            medicamento.save()
+            receta.save()
+            return redirect('Recetas')
+        else:
+            error = "No hay suficiente cantidad del medicamento disponible"
+            print(error)
+            return redirect('Recetas')
+    return render(request, "paciente/editarPaciente.html", {'receta':receta})
