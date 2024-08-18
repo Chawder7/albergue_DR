@@ -5,63 +5,111 @@
 <div class="text-center" style= "padding:10px">
     <h1>Inventario </h1>
 </div>
-<container class="container-table">
+<div class="container-table">
     <div class="container-button">
         <div class="box">
-    <input type="search">
-    <button  type="button">Buscar</button>
+            <form method="GET" action="{% url 'Medicamentos' %}">
+                <input type="search" name="busqueda" value="{{query}}" placeholder="Buscar">
+                <button  type="submit" class="button-search">Buscar</button>
+            </form>
         </div>
-    <div class="box">
-    <button type="submit"><i class="bi bi-plus-square"></i></button>
+        <button class="button-add" onclick="location.href='{%url 'AltaMed'%}'">Agregar</button>
     </div>
-    </div>
-    <div class= "container-table">
-<table class="table table-bordered border-purple text-center align-middle">
-    <thead class= "table-purple">
-        <tr class="text-white">
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Descripcion</th>
-            <th>Categoria</th>
-            <th>Cantidad</th>
-            <th>Caducidad</th>
-            <th>Editar</th>
-            <th>Eliminar</th>
-        </tr>
-    </thead>
-    <tboody>
-        {% for medicamento in medicamentos  %}
-        <tr>
-            <td>{{medicamento.id}}</td>
-            <td>{{medicamento.nombreMed}}</td>
-            <td>{{medicamento.descripcion}}</td>
-            <td>{{medicamento.categoria}}</td>
-            <td>{{medicamento.cantidad}}</td>
-            <td>{{medicamento.fechaVen}}</td>
-            <td><a href="{% url 'GetMedicamento' medicamento.id %}"><i class="bi bi-pencil"></i></a></td>
-            <td><i class="bi bi-trash"></i></td>
-        </tr>
-        {% endfor %}
-    </tboody>
-</table>
+<div class= "container-table">
+    <table class="table table-bordered border-purple text-center align-middle">
+        <thead class= "table-purple">
+            <tr class="text-white">
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Categoria</th>
+                <th>Cantidad</th>
+                <th>Caducidad</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tboody>
+            {% for medicamento in medicamentos  %}
+            <tr>
+                <td>{{medicamento.id}}</td>
+                <td>{{medicamento.nombreMed}}</td>
+                <td>{{medicamento.descripcion}}</td>
+                <td>{{medicamento.categoria}}</td>
+                <td>{{medicamento.cantidad}}</td>
+                <td>{{medicamento.fechaVen}}</td>
+                <td><a href="{% url 'GetMedicamento' medicamento.id %}"><i class="bi bi-pencil"></i></a></td>
+                <td><a href="{% url 'EliminarMed' medicamento.id %}"><i class="bi bi-trash"></i></td>
+            </tr>
+            {% endfor %}
+        </tboody>
+    </table>
 </div>
+    
+<div class="pagination-container">
+    <ul class="pagination-list">
+        {% if medicamentos.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page=1{% if query %}&q={{ query }}{% endif %}">&laquo;</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ medicamentos.previous_page_number }}{% if query %}&q={{ query }}{% endif %}">&lsaquo;</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">&laquo;</span>
+            </li>
+            <li class="page-item disabled">
+                <span class="page-link">&lsaquo;</span>
+            </li>
+        {% endif %}
+
+        {% for num in medicamentos.paginator.page_range %}
+            {% if medicamentos.number == num %}
+                <li class="page-item active">
+                    <span class="page-link">{{ num }}</span>
+                </li>
+            {% elif num > medicamentos.number|add:-3 and num < medicamentos.number|add:3 %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ num }}{% if query %}&q={{ query }}{% endif %}">{{ num }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+
+        {% if medicamentos.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ medicamentos.next_page_number }}{% if query %}&q={{ query }}{% endif %}">&rsaquo;</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">&rsaquo;</span>
+            </li>
+            <li class="page-item disabled">
+                <span class="page-link">&raquo;</span>
+            </li>
+        {% endif %}
+    </ul>
+</div>
+
+
 <div class="text-center">
     <h1>Medicamento Bajo</h1>
 </div>
-    <div class="container mt-4">
-        <div class="row">
-            {% for lowMed in lowMeds %}
-            <div class="col-md-3 mb-4"> 
-    <div class="card">
-        <img src="{{lowMed.fotoMed.url}}" class="card-img-top" width="100"  alt="...">
-        <div class="card-body">
-          <h5 class="card-title">{{lowMed.nombreMed}}</h5>
-          <p class="card-text">{{lowMed.descripcion}}</p>
-        </div>
-    </div>
+<div class="container mt-4">
+    <div class="row">
+        {% for lowMed in consulta.lowMeds %}
+        <div class="col-md-3 mb-4"> 
+        <div class="card">
+            <img src="{{lowMed.fotoMed.url}}" class="card-img-top" width="100" height="250"  alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{lowMed.nombreMed}}</h5>
+                    <p class="card-text">{{lowMed.descripcion}}</p>
+                </div>
             </div>
-            {% endfor %}
         </div>
+        {% endfor %}
     </div>
+</div>
+
 </container>
 {% endblock  %}

@@ -3,8 +3,37 @@ from .forms import MedicamentoForm
 from .models import Medicamentos
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Q
 
 @login_required
+# Crear la vista para listar todos los medicamentos
+def allMedicamentos(request):
+    query = request.GET.get('busqueda','')
+    medicamentos = Medicamentos.objects.all().only("id", "nombreMed", "descripcion", "categoria", "cantidad", "fechaVen")
+    
+    
+    lowMeds = Medicamentos.objects.filter(cantidad__lte=20)
+    consulta = {
+        "lowMeds": lowMeds
+    }
+    
+    if query:
+        medicamentos = medicamentos.filter(
+            Q(nombreMed__icontains=query) 
+        )
+    
+    paginacion = Paginator(medicamentos,5)
+    pagina = request.GET.get('page')
+    try:
+        medicamentos = paginacion.page(pagina)
+    except PageNotAnInteger:
+        medicamentos = paginacion.page(1)
+    except EmptyPage:
+        medicamentos = paginacion.page(paginacion.num_pages)
+    
+    return render(request, "farmacia/viewFarmacia.html", {'consulta':consulta, 'query':query, 'medicamentos':medicamentos})
+
 # Crear la vista para agregar un medicamento
 def altaMedicamento(request):
     return render(request, "farmacia/formFarmacia.html")
@@ -23,15 +52,6 @@ def registrarMedicamento(request):
         
     return render(request, "farmacia/formFarmacia.html", {'form': formMed})
 
-# Crear la vista para listar todos los medicamentos
-def allMedicamentos(request):
-    medicamentos = Medicamentos.objects.all().only("id", "nombreMed", "descripcion", "categoria", "cantidad", "fechaVen")
-    lowMeds = Medicamentos.objects.filter(cantidad__lte=20)
-    consulta = {
-        "medicamentos": medicamentos,
-        "lowMeds": lowMeds
-    }
-    return render(request, "farmacia/viewFarmacia.html", consulta)
 
 def altaMedicamento(request):
     return render(request, "farmacia/formFarmacia.html")
@@ -82,4 +102,14 @@ def editarMedicamento(request, id):
         else:
             messages.error(request, "Error al procesar el formulario")
     else:
-        return render(request, "farmacia/formFarmacia.html", {"medicamento": medicamento})
+        form = MedicamentoForm(instance=medicamento)
+    return render(request, "farmacia/formFarmacia.html", {"form": form, "medicamento": medicamento})
+
+
+
+def eliminarMed(request, id):
+    medicamento = get_object_or_404(Medicamentos, id=id)
+    
+    medicamento.delete()
+    medicamentos = Medicamentos.objects.all()
+    return render(request, 'farmacia/viewFarmacia.html', {'medicamentos': medicamentos})

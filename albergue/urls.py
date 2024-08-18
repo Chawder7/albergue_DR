@@ -19,6 +19,7 @@ urlpatterns = [
     path('registrar/', farmacia_views.registrarMedicamento, name = "RegistrarMed"),
     path('editarMedicamento/<int:id>/', farmacia_views.editarMedicamento, name="ActualizarMed"),
     path('consultarMedicamento/<int:id>/', farmacia_views.consultarMedicamentoIndividual, name="GetMedicamento"),
+    path('eliminarmed/<int:id>/',farmacia_views.eliminarMed,name="EliminarMed"),
 
     #RECETAS
     path('recetas/', receta_views.viewReceta, name="Recetas"),
