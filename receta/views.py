@@ -38,11 +38,9 @@ def recetaDetalles(request, id):
 
 def eliminarReceta(request, id):
     receta = get_object_or_404(Receta, id=id)
-    
     receta.delete()
     recetas = Receta.objects.all()
-    return render(request, 'receta/viewRecetas.html', {'recetas': recetas})
-    
+    return render(request, 'receta/viewRecetas.html', {'recetas': recetas})   
 
 def registrarReceta(request):
     if request.method == 'POST':
@@ -70,4 +68,18 @@ def registrarReceta(request):
     usuarios = User.objects.all()
     return render(request, 'receta/recetaForm.html', {'form': form, 'pacientes': pacientes, 'medicamentos': medicamentos, 'usuarios': usuarios})
     
+def editarReceta(request, id):
+    receta = Receta.objects.get(id=id)
+    return render(request, "receta/editarReceta.html",{'receta':receta})
 
+def actualizarReceta(request, id):
+    aReceta = get_object_or_404(Receta, id=id)
+    form = RecetaForm(request.POST, request.FILES, instance = aReceta)
+    if form.is_valid():
+        form.save()
+        recetas = Receta.objects.all()
+        return render(request,"receta/viewRecetas.html",{'recetas':recetas})
+    pacientes = Paciente.objects.all()
+    medicamentos = Medicamentos.objects.all()
+    usuarios = User.objects.all()
+    return render(request, "paciente/editarPaciente.html", {'receta':aReceta, 'pacientes': pacientes, 'medicamentos': medicamentos, 'usuarios': usuarios})

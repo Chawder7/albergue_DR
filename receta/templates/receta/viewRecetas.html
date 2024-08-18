@@ -41,7 +41,7 @@
             <td>{{receta.cantidad}}</td>
             <td>{{receta.diagnostico|striptags|truncatechars:15}}...</td>
             <td><a href="{% url "infoReceta" receta.id %}"><i class = "bi bi-eye"></i></a></td>
-            <td><i class="bi bi-pencil"></i></td>
+            <td><a href="{% url "EditarRec" receta.id %}"><i class="bi bi-pencil"></i></td>
         </tr>
         {% endfor %}
     </tboody>

@@ -52,10 +52,6 @@ def registrarMedicamento(request):
         
     return render(request, "farmacia/formFarmacia.html", {'form': formMed})
 
-
-def altaMedicamento(request):
-    return render(request, "farmacia/formFarmacia.html")
-
 def registrarMedicamento(request):
     if request.method == 'POST':
         formMed = MedicamentoForm(request.POST, request.FILES)
