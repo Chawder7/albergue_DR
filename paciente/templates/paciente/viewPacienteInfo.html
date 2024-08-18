@@ -20,39 +20,18 @@
     <div class="col-12">
       <h3 class="section-title">Recetas</h3>
     </div>
+    {%for receta in recetas%}
+    
     <div class="col-md-4">
       <div class="prescription-card">
-        <h2>006</h2>
-        <p>Doctor</p>
-        <p>
-          Lorem ipsum dolor sit amet nulla adipiscing elit. Nunc maximus, nec ut
-          commodo
-        </p>
-        <a href="#">Learn more →</a>
+        <h2>{{receta.id}}</h2>
+        <p>{{receta.doctor}}</p>
+        <p>{{receta.diagnostico}}</p>
+        <a href="{% url "infoReceta" receta.id %}">Ver mas →</a>
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="prescription-card">
-        <h2>007</h2>
-        <p>Doctor</p>
-        <p>
-          Lorem ipsum dolor sit amet nulla adipiscing elit. Nunc maximus, nec ut
-          commodo
-        </p>
-        <a href="#">Learn more →</a>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="prescription-card">
-        <h2>008</h2>
-        <p>Doctor</p>
-        <p>
-          Lorem ipsum dolor sit amet nulla adipiscing elit. Nunc maximus, nec ut
-          commodo
-        </p>
-        <a href="#">Learn more →</a>
-      </div>
-    </div>
+    {%endfor%}
+    
   </div>
 </div>
 {% endblock %}

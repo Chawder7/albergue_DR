@@ -30,7 +30,8 @@ def pacientes(request):
 
 def pacienteDetalles(request, id):
     paciente = Paciente.objects.get(id=id)
-    return render(request, "paciente/viewPacienteInfo.html", {'paciente':paciente})
+    recetas = Receta.objects.filter(paciente_id=id)
+    return render(request, "paciente/viewPacienteInfo.html", {'paciente':paciente, 'recetas':recetas})
 
 def registrarPaciente(request):
     if request.method == 'POST':
