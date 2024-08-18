@@ -5,6 +5,7 @@ from farmacia import views as farmacia_views
 from paciente import views as paciente_views
 from django.conf import settings
 from receta import views as receta_views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     #ADMIN
@@ -36,6 +37,8 @@ urlpatterns = [
     path('eliminarPaciente/<int:id>', paciente_views.eliminarPaciente, name="Eliminar"),
     path('altapaciente/', paciente_views.formPaciente, name="AltaPac"),
 
+    #LOGOUT
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 
 ]
 
