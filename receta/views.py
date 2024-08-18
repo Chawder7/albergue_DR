@@ -7,6 +7,7 @@ from receta.models import Receta
 from .forms import RecetaForm
 from django.shortcuts import get_object_or_404, redirect
 from utils import utils 
+import logging
 
 
 # Create your views here.
@@ -33,6 +34,9 @@ def eliminarReceta(id):
     return redirect('Recetas')  
 
 def registrarReceta(request):
+    pacientes = Paciente.objects.all()
+    medicamentos = Medicamentos.objects.all()
+    usuarios = User.objects.all()
     if request.method == 'POST':
         form = RecetaForm(request.POST)
         if form.is_valid():
@@ -42,15 +46,13 @@ def registrarReceta(request):
                 medicamento.cantidad -= receta.cantidad
                 medicamento.save()
                 receta.save()
-                return redirect('Recetas')
-        else:
-            error = "No hay suficiente cantidad del medicamento disponible"
-            return render(request, 'receta/recetaForm.html', {'form': form, 'error':error})
+                return redirect('Recetas')         
+            else:
+                error = "No hay suficiente cantidad del medicamento disponible"
+                print(error)
+                return render(request, 'receta/recetaForm.html', {'form': form,'error':error, 'pacientes': pacientes, 'medicamentos': medicamentos, 'usuarios': usuarios})
     else:
         form = RecetaForm()
-    pacientes = Paciente.objects.all()
-    medicamentos = Medicamentos.objects.all()
-    usuarios = User.objects.all()
     return render(request, 'receta/recetaForm.html', {'form': form, 'pacientes': pacientes, 'medicamentos': medicamentos, 'usuarios': usuarios})
     
 def editarReceta(request, id):

@@ -17,7 +17,7 @@ def allMedicamentos(request):
     }
     if query:
         medicamentos = medicamentos.filter(
-            Q(nombreMed__icontains=query) 
+            Q(nombreMed__icontains=query ) 
         )
     paginacion = utils.paginar(medicamentos, request, items_per_page=5)
     
@@ -77,7 +77,7 @@ def editarMedicamento(request, id):
         form = MedicamentoForm(instance=medicamento)
     return render(request, "farmacia/formFarmacia.html", {"form": form, "medicamento": medicamento})
 
-def eliminarMed(id):
+def eliminarMed(request,id):
     medicamento = get_object_or_404(Medicamentos, id=id)
     medicamento.delete()
     return redirect('Medicamentos')

@@ -46,18 +46,4 @@
         </form>
     </div>
 </section>
-
-<script>
-    document.querySelector('form').addEventListener('submit', function(event) {
-        const fileInput = document.querySelector('input[type="file"]');
-        const file = fileInput.files[0];
-        const allowedTypes = ['image/jpeg', 'image/png'];
-
-        if (file && !allowedTypes.includes(file.type)) {
-            event.preventDefault();
-            alert('Solo se permiten archivos JPG o PNG.');
-        }
-    });
-</script>
-
 {% endblock contenido %}

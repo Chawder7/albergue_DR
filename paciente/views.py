@@ -14,7 +14,8 @@ def pacientes(request):
     if query:
         pacientes = pacientes.filter(
             Q(nombrePaciente__icontains=query) | 
-            Q(apellidoPaciente__icontains=query)
+            Q(apellidoPaciente__icontains=query) |
+            Q(id__icontains=query)
         )
 
     paginacion = utils.paginar(pacientes, request)
