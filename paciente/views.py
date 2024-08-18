@@ -43,12 +43,10 @@ def registrarPaciente(request):
     else: 
         return render(request, "paciente/formPaciente.html", {'paciente': Paciente})
 
-def eliminarPaciente(request, id, confirmacion='paciente/confirmarEliminacion.html'):
+def eliminarPaciente(request, id):
     paciente = get_object_or_404(Paciente, id=id)
-    if request.method=='POST':
-        paciente.delete()
-        return redirect('Pacientes')
-    return render(request, confirmacion, {'object':paciente})
+    paciente.delete()
+    return redirect('Pacientes')
 
 def editarPaciente(request, id):
     paciente = Paciente.objects.get(id=id)

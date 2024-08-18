@@ -39,8 +39,30 @@
                 <td>{{medicamento.cantidad}}</td>
                 <td>{{medicamento.fechaVen}}</td>
                 <td><a href="{% url 'GetMedicamento' medicamento.id %}"><i class="bi bi-pencil"></i></a></td>
-                <td><a href="{% url 'EliminarMed' medicamento.id %}"><i class="bi bi-trash"></i></td>
+                <td><a href="{% url 'EliminarMed' medicamento.id %}" data-bs-toggle="modal" data-bs-target="#deleteModal{{ medicamento.id }}">
+                    <i class="bi bi-trash"></i>
+                </a></td>
             </tr>
+            
+             <!-- Modal de confirmación -->
+             <div class="modal fade" id="deleteModal{{ medicamento.id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ medicamento.id }}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteModalLabel{{ medicamento.id }}">Eliminar medicamento</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h4>¡Atención!</h4>
+                            <p>¿Está seguro que deseas <strong>eliminar</strong> el medicamento numero {{medicamento.id}}?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="{% url 'EliminarMed' medicamento.id %}" class="btn btn-danger">Sí</a>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             {% endfor %}
         </tboody>
     </table>
