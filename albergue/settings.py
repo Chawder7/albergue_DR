@@ -35,7 +35,7 @@ LOGOUT_REDIRECT_URL = 'Index'
 # Application definition
 
 INSTALLED_APPS = [
-    'admin_interface',
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,8 +47,21 @@ INSTALLED_APPS = [
     'paciente',
     'receta',
     'ckeditor',
-    'colorfield',
 ]
+
+
+#Configuraciones de jazzmin
+JAZZMIN_SETTINGS = {
+    "welcome_sign": "Administración Albergue Divino Redentor.",
+     "site_logo": "home/images/favicon_3.jpg",
+     "site_brand": "Administración",
+}
+#Temas
+JAZZMIN_UI_TWEAKS = {
+    "theme": "solar",
+}
+
+
 #COLOR FOR ADMIN
 X_FRAME_OPTIONS="SAMEORIGIN"
 
