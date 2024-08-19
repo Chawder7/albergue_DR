@@ -7,7 +7,6 @@ from django.db.models import Q
 from utils import utils
 
 @login_required
-# Crear la vista para listar todos los medicamentos
 def allMedicamentos(request):
     query = request.GET.get('busqueda','')
     medicamentos = Medicamentos.objects.all().only("id", "nombreMed", "descripcion", "categoria", "cantidad", "fechaVen")
@@ -23,10 +22,11 @@ def allMedicamentos(request):
     
     return render(request, "farmacia/viewFarmacia.html", {'consulta':consulta, 'query':query, 'medicamentos':paginacion})
 
-# Crear la vista para agregar un medicamento
+@login_required
 def altaMedicamento(request):
     return render(request, "farmacia/formFarmacia.html")
 
+@login_required
 def registrarMedicamento(request):
     if request.method == 'POST':
         formMed = MedicamentoForm(request.POST, request.FILES)
@@ -46,11 +46,13 @@ def registrarMedicamento(request):
     else: 
         return render(request, "farmacia/formFarmacia.html", {'medicamento': Medicamentos})
 
+@login_required
 def consultarMedicamentoIndividual(request, id):
     medicamento = get_object_or_404(Medicamentos, id=id)
     form = MedicamentoForm(instance=medicamento)
     return render(request, "farmacia/formFarmacia.html", {"form": form, "medicamento": medicamento})
 
+@login_required
 def editarMedicamento(request, id):
     medicamento = get_object_or_404(Medicamentos, id=id)
     if request.method == 'POST':
@@ -80,6 +82,7 @@ def editarMedicamento(request, id):
         form = MedicamentoForm(instance=medicamento)
     return render(request, "farmacia/formFarmacia.html", {"form": form, "medicamento": medicamento})
 
+@login_required
 def eliminarMed(request, id):
     medicamento = get_object_or_404(Medicamentos, id=id)
     medicamento.delete()

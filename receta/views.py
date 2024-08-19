@@ -7,11 +7,14 @@ from receta.models import Receta
 from .forms import RecetaForm
 from django.shortcuts import get_object_or_404, redirect
 from utils import utils 
+from django.contrib.auth.decorators import login_required
+
 import logging
 
 
 # Create your views here.
 
+@login_required
 def viewReceta(request):
     query = request.GET.get('busqueda','')
     recetas = Receta.objects.all()
@@ -25,15 +28,18 @@ def viewReceta(request):
     paginacion = utils.paginar(recetas, request)
     return render(request,"receta/viewRecetas.html",{'recetas':paginacion, 'query':query})
 
+@login_required
 def recetaDetalles(request, id):
     receta = Receta.objects.get(id=id)
     return render(request, "receta/viewRecetasInfo.html", {'receta': receta})
 
+@login_required
 def eliminarReceta(id):
     receta = get_object_or_404(Receta, id=id)
     receta.delete()
     return redirect('Recetas')  
 
+@login_required
 def registrarReceta(request):
     pacientes = Paciente.objects.all()
     medicamentos = Medicamentos.objects.all()
@@ -56,6 +62,7 @@ def registrarReceta(request):
         form = RecetaForm()
     return render(request, 'receta/recetaForm.html', {'form': form, 'pacientes': pacientes, 'medicamentos': medicamentos, 'usuarios': usuarios})
     
+@login_required
 def editarReceta(request, id):
     receta = Receta.objects.get(id=id)
     pacientes = Paciente.objects.all()
@@ -63,6 +70,7 @@ def editarReceta(request, id):
     usuarios = User.objects.all()
     return render(request, "receta/editarReceta.html",{'receta':receta, 'pacientes': pacientes, 'medicamentos': medicamentos, 'usuarios': usuarios})
 
+@login_required
 def actualizarReceta(request, id):
     receta = get_object_or_404(Receta, id=id)
     form = RecetaForm(request.POST, request.FILES, instance = receta)

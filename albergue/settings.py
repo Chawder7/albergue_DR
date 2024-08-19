@@ -53,12 +53,13 @@ INSTALLED_APPS = [
 #Configuraciones de jazzmin
 JAZZMIN_SETTINGS = {
     "welcome_sign": "Administración Albergue Divino Redentor.",
-     "site_logo": "home/images/favicon_3.jpg",
+     "site_logo": "home/images/logo2.jpeg",
      "site_brand": "Administración",
 }
 #Temas
 JAZZMIN_UI_TWEAKS = {
-    "theme": "solar",
+    # "theme": "solar",
+    "theme": "flatly",
 }
 
 

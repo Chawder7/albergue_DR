@@ -5,8 +5,11 @@ from receta.models import Receta
 from .forms import PacienteForm
 from django.contrib import messages
 from utils import utils
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
+@login_required
 def pacientes(request):
     query = request.GET.get('busqueda','')
     pacientes =  Paciente.objects.annotate(num_recetas=Count('receta')).only("id","nombrePaciente","apellidoPaciente","edad","genero")
@@ -22,11 +25,13 @@ def pacientes(request):
 
     return render(request, "paciente/viewPaciente.html",{'pacientes':paginacion, 'query':query})
 
+@login_required
 def pacienteDetalles(request, id):
     paciente = Paciente.objects.get(id=id)
     recetas = Receta.objects.filter(paciente_id=id)
     return render(request, "paciente/viewPacienteInfo.html", {'paciente':paciente, 'recetas':recetas})
 
+@login_required
 def registrarPaciente(request):
     if request.method == 'POST':
         formPac = PacienteForm(request.POST, request.FILES)
@@ -44,6 +49,7 @@ def registrarPaciente(request):
     else: 
         return render(request, "paciente/formPaciente.html", {'paciente': Paciente})
 
+@login_required
 def eliminarPaciente(request, id):
     paciente = get_object_or_404(Paciente, id=id)
     paciente.delete()
@@ -53,6 +59,7 @@ def editarPaciente(request, id):
     paciente = Paciente.objects.get(id=id)
     return render(request, "paciente/editarPaciente.html", {'paciente': paciente})
 
+@login_required
 def actualizarPaciente(request, id):
     aPaciente = get_object_or_404(Paciente, id=id)
     form = PacienteForm(request.POST, request.FILES, instance = aPaciente)
@@ -61,5 +68,6 @@ def actualizarPaciente(request, id):
         return redirect('Pacientes')
     return render(request, "paciente/editarPaciente.html", {'paciente':aPaciente})
 
+@login_required
 def formPaciente(request):
     return render(request, "paciente/formPaciente.html")
