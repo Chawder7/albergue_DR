@@ -9,6 +9,7 @@ from django.shortcuts import get_object_or_404, redirect
 from utils import utils 
 from django.contrib.auth.decorators import login_required
 
+
 import logging
 
 
@@ -16,6 +17,8 @@ import logging
 
 @login_required
 def viewReceta(request):
+    isAdmin = utils.checkRol(request)
+
     query = request.GET.get('busqueda','')
     recetas = Receta.objects.all()
 
@@ -26,7 +29,7 @@ def viewReceta(request):
             Q(id__icontains=query)
         )
     paginacion = utils.paginar(recetas, request)
-    return render(request,"receta/viewRecetas.html",{'recetas':paginacion, 'query':query})
+    return render(request,"receta/viewRecetas.html",{'recetas':paginacion, 'query':query, 'isAdmin':isAdmin})
 
 @login_required
 def recetaDetalles(request, id):

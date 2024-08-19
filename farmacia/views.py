@@ -8,6 +8,8 @@ from utils import utils
 
 @login_required
 def allMedicamentos(request):
+    isAdmin = utils.checkRol(request)
+    
     query = request.GET.get('busqueda','')
     medicamentos = Medicamentos.objects.all().only("id", "nombreMed", "descripcion", "categoria", "cantidad", "fechaVen")
     lowMeds = Medicamentos.objects.filter(cantidad__lte=10)
@@ -20,7 +22,7 @@ def allMedicamentos(request):
         )
     paginacion = utils.paginar(medicamentos, request, items_per_page=5)
     
-    return render(request, "farmacia/viewFarmacia.html", {'consulta':consulta, 'query':query, 'medicamentos':paginacion})
+    return render(request, "farmacia/viewFarmacia.html", {'consulta':consulta, 'query':query, 'medicamentos':paginacion, 'isAdmin':isAdmin})
 
 @login_required
 def altaMedicamento(request):

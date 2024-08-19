@@ -13,7 +13,9 @@
                 <button  type="submit" class="button-search">Buscar</button>
             </form>
         </div>
-        <button class="button-add" onclick="location.href='{%url 'AltaMed'%}'">Agregar</button>
+        {% if isAdmin %}
+            <button class="button-add" onclick="location.href='{%url 'AltaMed'%}'">Agregar</button>
+        {% endif %}
     </div>
 <div class= "container-table">
     <table class="table table-bordered border-purple text-center align-middle">
@@ -25,8 +27,10 @@
                 <th>Categoria</th>
                 <th>Cantidad</th>
                 <th>Caducidad</th>
+                {% if isAdmin %}
                 <th>Editar</th>
                 <th>Eliminar</th>
+                {% endif %}
             </tr>
         </thead>
         <tboody>
@@ -38,10 +42,12 @@
                 <td>{{medicamento.categoria}}</td>
                 <td>{{medicamento.cantidad}}</td>
                 <td>{{medicamento.fechaVen|date:"d/m/Y"}}</td>
-                <td><a href="{% url 'GetMedicamento' medicamento.id %}"><i class="bi bi-pencil"></i></a></td>
-                <td><a href="{% url 'EliminarMed' medicamento.id %}" data-bs-toggle="modal" data-bs-target="#deleteModal{{ medicamento.id }}">
-                    <i class="bi bi-trash"></i>
-                </a></td>
+                {% if isAdmin %}
+                    <td><a href="{% url 'GetMedicamento' medicamento.id %}"><i class="bi bi-pencil"></i></a></td>
+                    <td><a href="{% url 'EliminarMed' medicamento.id %}" data-bs-toggle="modal" data-bs-target="#deleteModal{{ medicamento.id }}">
+                        <i class="bi bi-trash"></i>
+                    </a></td>
+                {% endif %}
             </tr>
             
              <!-- Modal de confirmación -->

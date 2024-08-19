@@ -11,6 +11,8 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 @login_required
 def pacientes(request):
+    isAdmin = utils.checkRol(request)
+
     query = request.GET.get('busqueda','')
     pacientes =  Paciente.objects.annotate(num_recetas=Count('receta')).only("id","nombrePaciente","apellidoPaciente","edad","genero")
 
@@ -23,7 +25,7 @@ def pacientes(request):
 
     paginacion = utils.paginar(pacientes, request)
 
-    return render(request, "paciente/viewPaciente.html",{'pacientes':paginacion, 'query':query})
+    return render(request, "paciente/viewPaciente.html",{'pacientes':paginacion, 'query':query, 'isAdmin':isAdmin})
 
 @login_required
 def pacienteDetalles(request, id):

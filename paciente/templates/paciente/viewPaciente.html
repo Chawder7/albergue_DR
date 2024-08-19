@@ -13,7 +13,9 @@
                 <button  type="submit" class="button-search">Buscar</button>
             </form>
         </div>
+        {% if not isAdmin %}
         <button class="button-add" onclick="location.href='{% url 'RegistrarPac' %}'">Agregar</button>
+        {% endif %}
     </div>
     <div class= "container-table">
 <table class="table table-bordered border-purple text-center align-middle">
@@ -25,8 +27,10 @@
             <th>Género</th>
             <th>Recetas</th>
             <th>Detalles</th>
+            {% if not isAdmin %}
             <th>Editar</th>
             <th>Eliminar</th>
+            {% endif %}
         </tr>
     </thead>
     <tboody>
@@ -38,10 +42,12 @@
             <td>{{paciente.get_genero_display}}</td>
             <td>{{paciente.num_recetas}}</td>
             <td><a href="{% url 'infoPaciente' paciente.id%}"><i class = "bi bi-eye"></a></i></td>
+            {% if not isAdmin %}
             <td><a href="{% url 'Editar' paciente.id%}"><i class="bi bi-pencil"></i></td>
             <td><a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal{{ paciente.id }}">
                 <i class="bi bi-trash"></i>
             </a></td>
+            {% endif %}
 
         </tr>
 

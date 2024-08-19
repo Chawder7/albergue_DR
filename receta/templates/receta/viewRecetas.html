@@ -13,7 +13,9 @@
                 <button  type="submit" class="button-search">Buscar</button>
             </form>
         </div>
+        {% if not isAdmin %}
         <button class="button-add" onclick="location.href='{%url 'RegistrarReceta'%}'">Agregar</button>
+        {% endif %}
     </div>
     <div class= "container-table">
 <table class="table table-bordered border-purple text-center align-middle">
@@ -26,8 +28,10 @@
             <th>Fecha</th>
             <th>Cantidad</th>
             <th>Diagnostico</th>
-            <th>Detalles</th>
+            {% if not isAdmin %}
             <th>Editar</th>
+            {% endif %}
+            <th>Detalles</th>
         </tr>
     </thead>
     <tboody>
@@ -40,8 +44,11 @@
             <td>{{receta.created|date:"d/m/Y"}}</td>
             <td>{{receta.cantidad}}</td>
             <td>{{receta.diagnostico|striptags|truncatechars:15}}...</td>
-            <td><a href="{% url "infoReceta" receta.id %}"><i class = "bi bi-eye"></i></a></td>
+            {% if not isAdmin %}
             <td><a href="{% url "EditarRec" receta.id %}"><i class="bi bi-pencil"></i></td>
+
+            {% endif %}
+            <td><a href="{% url "infoReceta" receta.id %}"><i class = "bi bi-eye"></i></a></td>
         </tr>
         {% endfor %}
     </tboody>

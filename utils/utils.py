@@ -11,3 +11,11 @@ def paginar(queryset, request, items_per_page=8):
         objetos_paginados = paginacion.page(paginacion.num_pages)
     
     return objetos_paginados
+
+
+def checkRol(request):
+    user = request.user
+    if user.groups.filter(name='Admin').exists():
+        return True
+    else:
+        return False
