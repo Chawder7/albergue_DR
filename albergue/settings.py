@@ -55,7 +55,7 @@ INSTALLED_APPS = [
 #Configuraciones de jazzmin
 JAZZMIN_SETTINGS = {
     "welcome_sign": "Administración Albergue Divino Redentor.",
-     "site_logo": "home/images/logo2.jpeg",
+     "site_logo": "home/images/logo_3.jpg",
      "site_brand": "Administración",
     "topmenu_links": [
     # Url that gets reversed (Permissions can be added)
