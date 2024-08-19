@@ -1,0 +1,123 @@
+{% extends "home/base.html" %}
+{% block titulo %}Pacientes{% endblock  %}
+ 
+{% block contenido %}
+<div class="text-center" style= "padding:10px">
+    <h1>Pacientes </h1>
+</div>
+<container class="container-table">
+    <div class="container-button">
+        <div class="box">
+            <form method="GET" action="{% url 'Pacientes' %}">
+                <input type="search" name="busqueda" value="{{query}}" placeholder="Nombre">
+                <button  type="submit" class="button-search">Buscar</button>
+            </form>
+        </div>
+        {% if not isAdmin %}
+        <button class="button-add" onclick="location.href='{% url 'RegistrarPac' %}'">Agregar</button>
+        {% endif %}
+    </div>
+    <div class= "container-table">
+<table class="table table-bordered border-purple text-center align-middle">
+    <thead class= "table-purple">
+        <tr class="text-white">
+            <th>Clave</th>
+            <th>Nombre</th>
+            <th>Edad</th>
+            <th>Género</th>
+            <th>Recetas</th>
+            <th>Detalles</th>
+            {% if not isAdmin %}
+            <th>Editar</th>
+            <th>Eliminar</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tboody>
+        {% for paciente in pacientes  %}
+        <tr>
+            <td>{{paciente.id}}</td>
+            <td>{{paciente.nombrePaciente}} {{paciente.apellidoPaciente}}</td>
+            <td>{{paciente.edad}}</td>
+            <td>{{paciente.get_genero_display}}</td>
+            <td>{{paciente.num_recetas}}</td>
+            <td><a href="{% url 'infoPaciente' paciente.id%}"><i class = "bi bi-eye"></a></i></td>
+            {% if not isAdmin %}
+            <td><a href="{% url 'Editar' paciente.id%}"><i class="bi bi-pencil"></i></td>
+            <td><a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal{{ paciente.id }}">
+                <i class="bi bi-trash"></i>
+            </a></td>
+            {% endif %}
+
+        </tr>
+
+         <!-- Modal de confirmación -->
+         <div class="modal fade" id="deleteModal{{ paciente.id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ paciente.id }}" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel{{ paciente.paciente }}">Eliminar Paciente</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h4>¡Atención!</h4>
+                        <p>¿Está seguro que deseas <strong>eliminar</strong> el paciente numero {{paciente.id}}?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="{% url 'Eliminar' paciente.id %}" class="btn btn-danger">Sí</a>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </tboody>
+</table>
+</div>
+<div class="pagination-container">
+    <ul class="pagination-list">
+        {% if pacientes.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page=1{% if query %}&q={{ query }}{% endif %}">&laquo;</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ pacientes.previous_page_number }}{% if query %}&q={{ query }}{% endif %}">&lsaquo;</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">&laquo;</span>
+            </li>
+            <li class="page-item disabled">
+                <span class="page-link">&lsaquo;</span>
+            </li>
+        {% endif %}
+
+        {% for num in pacientes.paginator.page_range %}
+            {% if pacientes.number == num %}
+                <li class="page-item active">
+                    <span class="page-link">{{ num }}</span>
+                </li>
+            {% elif num > pacientes.number|add:-3 and num < pacientes.number|add:3 %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ num }}{% if query %}&q={{ query }}{% endif %}">{{ num }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+
+        {% if pacientes.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ pacientes.next_page_number }}{% if query %}&q={{ query }}{% endif %}">&rsaquo;</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">&rsaquo;</span>
+            </li>
+            <li class="page-item disabled">
+                <span class="page-link">&raquo;</span>
+            </li>
+        {% endif %}
+    </ul>
+</div>
+
+</container>
+{% endblock  %}

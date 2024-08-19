@@ -1,22 +1,51 @@
-"""
-URL configuration for albergue project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import path
+from home import views as home_views 
+from farmacia import views as farmacia_views
+from paciente import views as paciente_views
+from django.conf import settings
+from receta import views as receta_views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
+    #ADMIN
     path('admin/', admin.site.urls),
+
+    #HOME
+    path('', home_views.index, name='Index'),
+
+    #FARMACIA
+    path('farmacia/', farmacia_views.allMedicamentos, name="Medicamentos"),
+    path('altamedicamento/', farmacia_views.altaMedicamento, name = "AltaMed"),
+    path('registrar/', farmacia_views.registrarMedicamento, name = "RegistrarMed"),
+    path('editarMedicamento/<int:id>/', farmacia_views.editarMedicamento, name="ActualizarMed"),
+    path('consultarMedicamento/<int:id>/', farmacia_views.consultarMedicamentoIndividual, name="GetMedicamento"),
+    path('eliminarmed/<int:id>/',farmacia_views.eliminarMed,name="EliminarMed"),
+
+    #RECETAS
+    path('recetas/', receta_views.viewReceta, name="Recetas"),
+    path('registroreceta/', receta_views.registrarReceta, name = "RegistrarReceta"),
+    path('recetaInfo/<int:id>/', receta_views.recetaDetalles, name="infoReceta"),
+    path('eliminarReceta/<int:id>/', receta_views.eliminarReceta, name="DeleteReceta"),
+    path('editarReceta/<int:id>/',receta_views.editarReceta, name="EditarRec"),
+    path('actualizarReceta/<int:id>/',receta_views.actualizarReceta, name="ActualizarRec"),
+
+    
+    #PACIENTES
+    path('pacienteInfo/<int:id>', paciente_views.pacienteDetalles, name="infoPaciente"),
+    path('pacientes/', paciente_views.pacientes, name="Pacientes"),
+    path('registrarpaciente/', paciente_views.registrarPaciente, name="RegistrarPac"),
+    path('editarPaciente/<int:id>', paciente_views.editarPaciente, name="Editar"), 
+    path('actualizarPaciente/<int:id>', paciente_views.actualizarPaciente, name="Actualizar"),
+    path('eliminarPaciente/<int:id>', paciente_views.eliminarPaciente, name="Eliminar"),
+    path('altapaciente/', paciente_views.formPaciente, name="AltaPac"),
+
+    #LOGOUT
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+
 ]
+
+if settings.DEBUG:
+    from django.conf.urls.static import static 
+    urlpatterns += static(settings.MEDIA_URL,
+                document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,22 @@
+{% extends "home/base.html" %}
+
+{% block titulo %} Receta info {% endblock  %}
+
+{% block contenido %} 
+<div class="content">
+    <div class="receta-header">
+        <h2>Receta {{receta.id}} - {{receta.created}}</h2>
+        <p>Paciente: {{receta.paciente}} {{receta.paciente.apellidoPaciente}}</p>
+        <p>Dr. {{receta.doctor.first_name}} {{receta.doctor.last_name}}</p>
+    </div>
+    <div class="receta-body">
+        <p>{{receta.diagnostico}}</p>
+    </div>
+    <div class="inventory">
+        <div>
+            <span>-{{receta.cantidad}}</span>
+            <p>{{receta.medicamento}}</p>
+        </div>
+    </div>
+</div>
+{% endblock  %}

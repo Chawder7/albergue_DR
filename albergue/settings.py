@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,17 +28,43 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGIN_URL = '/admin/login/'
+LOGOUT_REDIRECT_URL = 'Index'
+
 
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'home',
+    'farmacia',
+    'paciente',
+    'receta',
+    'ckeditor',
 ]
+
+
+#Configuraciones de jazzmin
+JAZZMIN_SETTINGS = {
+    "welcome_sign": "Administración Albergue Divino Redentor.",
+     "site_logo": "home/images/logo2.jpeg",
+     "site_brand": "Administración",
+}
+#Temas
+JAZZMIN_UI_TWEAKS = {
+    # "theme": "solar",
+    "theme": "flatly",
+}
+
+
+#COLOR FOR ADMIN
+X_FRAME_OPTIONS="SAMEORIGIN"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -103,9 +130,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-es'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Mexico_City'
 
 USE_I18N = True
 
@@ -121,3 +148,18 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+CKEDITOR_CONFIGS = {
+ 'default': {'toolbar': 'Custom',
+ 'toolbar_Custom': [
+ ['Bold', 'Italic', 'Underline'],
+ ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 
+'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+ ['Link', 'Unlink'],
+ ['RemoveFormat']
+ ]
+ }
+ }
