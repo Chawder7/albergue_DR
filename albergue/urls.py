@@ -27,6 +27,9 @@ urlpatterns = [
     path('registroreceta/', receta_views.registrarReceta, name = "RegistrarReceta"),
     path('recetaInfo/<int:id>/', receta_views.recetaDetalles, name="infoReceta"),
     path('eliminarReceta/<int:id>/', receta_views.eliminarReceta, name="DeleteReceta"),
+    path('editarReceta/<int:id>/',receta_views.editarReceta, name="EditarRec"),
+    path('actualizarReceta/<int:id>/',receta_views.actualizarReceta, name="ActualizarRec"),
+
     
     #PACIENTES
     path('pacienteInfo/<int:id>', paciente_views.pacienteDetalles, name="infoPaciente"),
