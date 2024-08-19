@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from home import views as home_views 
 from farmacia import views as farmacia_views
 from paciente import views as paciente_views
@@ -10,10 +10,10 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     #ADMIN
     path('admin/', admin.site.urls),
-
+    #Admin tools
+    path('admin_tools_stats/', include('admin_tools_stats.urls')),
     #HOME
     path('', home_views.index, name='Index'),
-
     #FARMACIA
     path('farmacia/', farmacia_views.allMedicamentos, name="Medicamentos"),
     path('altamedicamento/', farmacia_views.altaMedicamento, name = "AltaMed"),
@@ -21,16 +21,13 @@ urlpatterns = [
     path('editarMedicamento/<int:id>/', farmacia_views.editarMedicamento, name="ActualizarMed"),
     path('consultarMedicamento/<int:id>/', farmacia_views.consultarMedicamentoIndividual, name="GetMedicamento"),
     path('eliminarmed/<int:id>/',farmacia_views.eliminarMed,name="EliminarMed"),
-
     #RECETAS
     path('recetas/', receta_views.viewReceta, name="Recetas"),
     path('registroreceta/', receta_views.registrarReceta, name = "RegistrarReceta"),
     path('recetaInfo/<int:id>/', receta_views.recetaDetalles, name="infoReceta"),
     path('eliminarReceta/<int:id>/', receta_views.eliminarReceta, name="DeleteReceta"),
     path('editarReceta/<int:id>/',receta_views.editarReceta, name="EditarRec"),
-    path('actualizarReceta/<int:id>/',receta_views.actualizarReceta, name="ActualizarRec"),
-
-    
+    path('actualizarReceta/<int:id>/',receta_views.actualizarReceta, name="ActualizarRec"),    
     #PACIENTES
     path('pacienteInfo/<int:id>', paciente_views.pacienteDetalles, name="infoPaciente"),
     path('pacientes/', paciente_views.pacientes, name="Pacientes"),
@@ -39,7 +36,6 @@ urlpatterns = [
     path('actualizarPaciente/<int:id>', paciente_views.actualizarPaciente, name="Actualizar"),
     path('eliminarPaciente/<int:id>', paciente_views.eliminarPaciente, name="Eliminar"),
     path('altapaciente/', paciente_views.formPaciente, name="AltaPac"),
-
     #LOGOUT
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 
