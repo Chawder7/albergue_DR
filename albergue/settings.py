@@ -36,6 +36,8 @@ LOGOUT_REDIRECT_URL = 'Index'
 
 INSTALLED_APPS = [
     'jazzmin',
+    'django_nvd3', # admin tools
+    'admin_tools_stats', #admin tools
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -55,6 +57,12 @@ JAZZMIN_SETTINGS = {
     "welcome_sign": "Administración Albergue Divino Redentor.",
      "site_logo": "home/images/logo2.jpeg",
      "site_brand": "Administración",
+    "topmenu_links": [
+    # Url that gets reversed (Permissions can be added)
+    {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
+    #Url para acceder a las graficas personalizadas existentes
+    { "name": "Analytics Dashboard", "url": "/admin_tools_stats/analytics/", "icon": "fas fa-chart-line", "permissions": ["auth.view_user"],}
+    ],
 }
 #Temas
 JAZZMIN_UI_TWEAKS = {
