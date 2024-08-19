@@ -10,7 +10,7 @@ from utils import utils
 def allMedicamentos(request):
     query = request.GET.get('busqueda','')
     medicamentos = Medicamentos.objects.all().only("id", "nombreMed", "descripcion", "categoria", "cantidad", "fechaVen")
-    lowMeds = Medicamentos.objects.filter(cantidad__lte=20)
+    lowMeds = Medicamentos.objects.filter(cantidad__lte=10)
     consulta = {
         "lowMeds": lowMeds
     }

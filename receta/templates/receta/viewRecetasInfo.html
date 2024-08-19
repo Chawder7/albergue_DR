@@ -6,8 +6,8 @@
 <div class="content">
     <div class="receta-header">
         <h2>Receta {{receta.id}} - {{receta.created}}</h2>
-        <p>{{receta.paciente}}</p>
-        <p>Dr. {{receta.doctor}}</p>
+        <p>Paciente: {{receta.paciente}} {{receta.paciente.apellidoPaciente}}</p>
+        <p>Dr. {{receta.doctor.first_name}} {{receta.doctor.last_name}}</p>
     </div>
     <div class="receta-body">
         <p>{{receta.diagnostico}}</p>

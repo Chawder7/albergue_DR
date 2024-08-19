@@ -37,7 +37,7 @@
                 <td>{{medicamento.descripcion}}</td>
                 <td>{{medicamento.categoria}}</td>
                 <td>{{medicamento.cantidad}}</td>
-                <td>{{medicamento.fechaVen}}</td>
+                <td>{{medicamento.fechaVen|date:"d/m/Y"}}</td>
                 <td><a href="{% url 'GetMedicamento' medicamento.id %}"><i class="bi bi-pencil"></i></a></td>
                 <td><a href="{% url 'EliminarMed' medicamento.id %}" data-bs-toggle="modal" data-bs-target="#deleteModal{{ medicamento.id }}">
                     <i class="bi bi-trash"></i>
@@ -125,7 +125,7 @@
             <img src="{{lowMed.fotoMed.url}}" class="card-img-top" width="100" height="250"  alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{{lowMed.nombreMed}}</h5>
-                    <p class="card-text">{{lowMed.descripcion}}</p>
+                    <p class="card-text">Stock: {{lowMed.cantidad}}</p>
                 </div>
             </div>
         </div>
