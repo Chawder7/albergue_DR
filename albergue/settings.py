@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-8pn()&ho3t6#7lbs8rko35yd#qo^b15*51dc6%)0w_y3u+7i&('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['albergueDR.pythonanywhere.com', 'localhost', '127.0.0.1']
 
 LOGIN_URL = '/admin/login/'
 LOGOUT_REDIRECT_URL = 'Index'
@@ -118,10 +118,10 @@ WSGI_APPLICATION = 'albergue.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ejemplo',
-        'USER': 'root',
-        'PASSWORD':'lio123',
-        'HOST': 'localhost',
+        'NAME': 'albergueDR$albergueDB',
+        'USER': 'albergueDR',
+        'PASSWORD':'lio12345',
+        'HOST': 'albergueDR.mysql.pythonanywhere-services.com',
         'PORT': '3306',
     }
 }
@@ -162,6 +162,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -175,7 +176,7 @@ CKEDITOR_CONFIGS = {
  'default': {'toolbar': 'Custom',
  'toolbar_Custom': [
  ['Bold', 'Italic', 'Underline'],
- ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 
+ ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-',
 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
  ['Link', 'Unlink'],
  ['RemoveFormat']
